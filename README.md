@@ -23,6 +23,8 @@ mainly we will have 2 tables
 - User Table
 - Logs Table
 
+<img src="/screenshots/COVID-Tracker.png" />
+
 Node: there will be an index on country column so we can fetch queries for single country faster
 
 you can see the schema <a href="https://dbdiagram.io/d/62e03cde0d66c746555703fc">here</a>
