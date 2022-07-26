@@ -32,7 +32,7 @@ you can see the schema <a href="https://dbdiagram.io/d/62e03cde0d66c746555703fc"
 
 ## Design of API
 
-The API made in postman you can include the collection in your own postman.
+The API made in postman you can include the collection in your own postman <a href="/postman-collection/COVID-Tracker.postman_collection.json">JSON File</a>.
 
 Read postman docmentation collection for <a href="https://documenter.getpostman.com/view/1537357/UzXNSwq1">COVID-Tracker</a>
 
