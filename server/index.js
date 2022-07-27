@@ -7,6 +7,7 @@ const config = require("./config.json");
 const authRoute = require('./routes/auth');
 const userRoute = require('./routes/user');
 const logRoute = require('./routes/log');
+const dashboardRoute = require('./routes/dashboard');
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(bodyParser.json())
 app.use('/auth', authRoute);
 app.use('/user', userRoute);
 app.use('/api', logRoute);
+app.use('/dashboard', dashboardRoute);
 
 // running the server
 app.listen(config.port, () => {
