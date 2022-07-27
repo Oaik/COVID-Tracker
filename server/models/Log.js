@@ -19,7 +19,11 @@ const LogSchema = new Schema({
         type: Number,
         required: true
     },
-    country: {
+    countryName: {
+        type: String,
+        required: true
+    },
+    countryCode: {
         type: String,
         required: true
     },

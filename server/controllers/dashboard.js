@@ -8,19 +8,21 @@ const showDashboard = async (req, res) => {
     let logsByCountryContainer = [];
     let countries = [];
     for(let i = 0; i < logs.length; ++i) {
-        const country = logs[i].country;
+        const countryName = logs[i].countryName;
+        const countryCode = logs[i].countryCode;
 
-        if(!logsByCountryContainer[country]) {
-            logsByCountryContainer[country] = {
-                countryName: country,
+        if(!logsByCountryContainer[countryName]) {
+            logsByCountryContainer[countryName] = {
+                countryName: countryName,
+                countryCode: countryCode,
                 length: 0,
                 data: []
             };
             countries.push(country);
         }
 
-        logsByCountryContainer[country].data.push(logs[i]);
-        logsByCountryContainer[country].length++;
+        logsByCountryContainer[countryName].data.push(logs[i]);
+        logsByCountryContainer[countryName].length++;
     }
 
     let dashboardData = [];

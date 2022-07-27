@@ -17,8 +17,8 @@ const showLogsInCountry = async (country) => {
 }
 
 const createLog = async (req, res) => {
-    const country = await findCountry(req.body.latitude, req.body.longitude).catch((error) => {
-        console.log(error);
+    const countryList = await findCountry(req.body.latitude, req.body.longitude).catch((error) => {
+        console.log("error while finding the country", error);
 
         return res.json({error});
     });
@@ -26,7 +26,7 @@ const createLog = async (req, res) => {
     const newLog = new Log({
         ...req.body,
         user_id: req.user.id,
-        country
+        ...countryList
     })
     
     newLog.save().catch((error) => {
@@ -40,7 +40,8 @@ const createLog = async (req, res) => {
 
 const findCountry = async (latitude, longitude) => {
     const res = await axios.get(`http://api.geonames.org/countryCodeJSON?lat=${latitude}&lng=${longitude}&username=oaik`);
-    return res.data.countryName;
+
+    return {countryName: res.data.countryName, countryCode: res.data.countryCode};
 }
 
 module.exports = {
