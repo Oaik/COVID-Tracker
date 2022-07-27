@@ -1,45 +1,26 @@
 const express = require("express");
 const mongoose = require("mongoose");
-
+const bodyParser = require("body-parser");
 const config = require("./config.json");
+
+// importing routes
+const authRoute = require('./routes/auth');
 
 const app = express();
 
+// connect database
 mongoose.connect(config.monogoURL, { useNewUrlParser: true}).catch( (err) => {
   console.error("Error while connecting to the database", err);
 });
 
-// TESTING
-const User = require('./models/User');
-const Log = require('./models/Log');
+// middlewares
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
-Log.find({}).populate('user_id') // only works if we pushed refs to person.eventsAttended
-.exec(function(err, person) {
-    if (err) return console.log(err);
-    console.log(person);
-});
+// routes
+app.use('/api', authRoute);
 
-// const newUser = User.findOne({
-//   email: "hello@he.com"
-// }).then((data) => {
-//   const newLog = new Log();
-//   newLog.user_id = data._id;
-//   newLog.temperature = 5;
-//   newLog.latitude = 4;
-//   newLog.longitude = 2;
-//   newLog.country = "EGYPT";
-
-//   newLog.save();
-//   console.log(data);
-// });
-
-// const newUser = new User();
-// newUser.email = "hello@he.com";
-// newUser.name = "ana";
-// newUser.password = "anaana";
-// newUser.save();
-
-
+// running the server
 app.listen(config.port, () => {
     console.log(`Server running on port ${config.port}`);
 });

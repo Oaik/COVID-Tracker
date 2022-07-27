@@ -28,3 +28,7 @@ Log.findOne({}).populate('user_id') // only works if we pushed refs to person.ev
 // newUser.name = "ana";
 // newUser.password = "anaana";
 // newUser.save();
+
+Log.find({country: "USA"}).then((data) => {
+    console.log(data);
+})
