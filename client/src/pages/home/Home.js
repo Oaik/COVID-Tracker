@@ -1,4 +1,4 @@
-function Hotel() {
+function Login() {
     return (
         <h1>
             Home Page
@@ -6,4 +6,4 @@ function Hotel() {
     )
 }
 
-export default Hotel;
+export default Login;

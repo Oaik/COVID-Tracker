@@ -9,6 +9,8 @@ import Footer from "./components/footer/footer";
 
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
+import Register from "./pages/register/Register";
+
 
 import './App.css';
 
@@ -21,6 +23,7 @@ function App() {
         <Routes>
           <Route path="/" exact element={<Home/>}/>
           <Route path="/login" exact element={<Login/>}/>
+          <Route path="/register" exact element={<Register/>}/>
         </Routes>
       </BrowserRouter>
 

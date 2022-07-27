@@ -16,7 +16,8 @@ We will have 6 pages:
 
 
 ## Components
-
+- navbar
+- footer
 
 
 ## Available Scripts
