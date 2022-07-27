@@ -4,11 +4,11 @@ const Schema = mongoose.Schema
 const LogSchema = new Schema({
     user_id: {
         type: Schema.Types.ObjectId,
-        ref: "User",
+        ref: "user",
         required: true,
     },
     temperature: {
-        type: String,
+        type: Number,
         required: true
     },
     latitude: {
@@ -34,6 +34,7 @@ const LogSchema = new Schema({
     }
 }, { timestamps: true })
 
+// non-clustered index on country column
 LogSchema.index({ country: 1 });
 
 
