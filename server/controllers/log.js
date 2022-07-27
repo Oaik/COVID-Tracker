@@ -1,3 +1,5 @@
+const axios = require("axios");
+
 const Log = require('../models/Log');
 
 const showLogs = async (req, res) => {
@@ -14,7 +16,35 @@ const showLogsInCountry = async (country) => {
     return Log.find({country: country});
 }
 
+const createLog = async (req, res) => {
+    const country = await findCountry(req.body.latitude, req.body.longitude).catch((error) => {
+        console.log(error);
+
+        return res.json({error});
+    });
+    
+    const newLog = new Log({
+        ...req.body,
+        user_id: req.user.id,
+        country
+    })
+    
+    newLog.save().catch((error) => {
+        console.log("Error while saving the log", error);
+
+        return res.json({error: error});
+    })
+
+    return res.json("Log saved");
+}
+
+const findCountry = async (latitude, longitude) => {
+    const res = await axios.get(`http://api.geonames.org/countryCodeJSON?lat=${latitude}&lng=${longitude}&username=oaik`);
+    return res.data.countryName;
+}
+
 module.exports = {
     showLogs,
-    showLogsInCountry
+    showLogsInCountry,
+    createLog
 }
