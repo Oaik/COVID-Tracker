@@ -5,7 +5,8 @@ const config = require("./config.json");
 
 // importing routes
 const authRoute = require('./routes/auth');
-const authUser = require('./routes/user');
+const userRoute = require('./routes/user');
+const logRoute = require('./routes/log');
 
 const app = express();
 
@@ -20,7 +21,8 @@ app.use(bodyParser.json())
 
 // routes
 app.use('/api', authRoute);
-app.use('/user', authUser);
+app.use('/user', userRoute);
+app.use('/api', logRoute);
 
 // running the server
 app.listen(config.port, () => {
