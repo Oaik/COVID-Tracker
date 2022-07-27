@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // routes
-app.use('/api', authRoute);
+app.use('/auth', authRoute);
 app.use('/user', userRoute);
 app.use('/api', logRoute);
 
