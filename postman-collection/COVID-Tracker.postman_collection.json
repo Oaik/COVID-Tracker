@@ -66,6 +66,98 @@
 			]
 		},
 		{
+			"name": "Profile",
+			"item": [
+				{
+					"name": "Change profile info",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjUyODIzNjE2LCJpYXQiOjE2NTI4MjE4MTYsImp0aSI6IjhhMjcyNGVlYWIwODQ0MmQ5OGNjZTkxODUyMTkxZTg3IiwidXNlcl9pZCI6N30.8kEYU-4yN9Q3VpBSTva86_5hgha6ceyhS4mdY6ygY-A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"New Name\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIHost}}/api/profile/:id",
+							"host": [
+								"{{APIHost}}"
+							],
+							"path": [
+								"api",
+								"profile",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get current user profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{APIHost}}/api/profile",
+							"host": [
+								"{{APIHost}}"
+							],
+							"path": [
+								"api",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user profile with id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{APIHost}}/api/profile/:id",
+							"host": [
+								"{{APIHost}}"
+							],
+							"path": [
+								"api",
+								"profile",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Logs",
 			"item": [
 				{

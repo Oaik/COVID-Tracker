@@ -71,6 +71,46 @@ Read postman docmentation collection for <a href="https://documenter.getpostman.
   </li>
 </ul>
 
+
+#### Profile:
+<ul>
+  <li>
+    Update Profile
+    <ul>
+      <li> 
+        PUT request to: http://localhost:8000/api/profile/:id
+        <code>
+        "Header with AUTHORIZATION: Bearer Token"
+        </code>
+        <br/>
+        <pre>
+          Body: {
+            "name": "New Name"
+          }
+        </pre>
+      </li>
+    </ul>
+  </li>
+  
+  <li>
+    get current profile
+    <ul>
+      <li> 
+        Get request to: http://localhost:8000/api/profile
+      </li>
+    </ul>
+  </li>
+  
+  <li>
+    Get user profile with id
+    <ul>
+      <li> 
+        Get request to: http://localhost:8000/api/profile/:id
+      </li>
+    </ul>
+  </li>
+</ul>
+
 #### Logs:
 <ul>
   <li>
