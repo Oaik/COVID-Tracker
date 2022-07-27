@@ -1,4 +1,5 @@
 {
     "port": 8000,
-    "monogoURL": "mongodb://localhost:27017/covid"
+    "monogoURL": "mongodb://localhost:27017/covid",
+    "secretKey": "topsecret"
 }

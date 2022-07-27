@@ -1,6 +1,12 @@
-
-const User = require('../models/User');
+// dependencies
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
+// models
+const User = require('../models/User');
+
+// others
+const config = require('../config.json');
 
 const register = (req, res) => {
     bcrypt.hash(req.body.password, 5).then((hashedPassword) => {
@@ -35,7 +41,13 @@ const login = (req, res) => {
                 return res.send("password does not match");
             }
 
+            const token = jwt.sign({
+                "id": user._id,
+                "name": user.name,
+                "email": user.email}, config.secretKey);
+
             return res.json({
+                accessToken: token,
                 name: user.name
             });
         }).catch( (error) => {
