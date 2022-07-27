@@ -12,11 +12,20 @@
 				{
 					"name": "login",
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"email@gmail.com\",\r\n    \"password\": \"asd123\"\r\n}",
+							"raw": "{\r\n    \"email\": \"omar123@gmail.com\",\r\n    \"password\": \"123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -24,12 +33,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{APIHost}}/api/login",
+							"raw": "{{APIHost}}/auth/login",
 							"host": [
 								"{{APIHost}}"
 							],
 							"path": [
-								"api",
+								"auth",
 								"login"
 							]
 						}
@@ -43,7 +52,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"email@gmail.com\",\r\n    \"name\": \"omar\",\r\n    \"password\": \"ENCRPTEDasd123\"\r\n}",
+							"raw": "{\r\n    \"email\": \"omar123@gmail.com\",\r\n    \"name\": \"omar\",\r\n    \"password\": \"123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -51,12 +60,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{APIHost}}/api/register",
+							"raw": "{{APIHost}}/auth/register",
 							"host": [
 								"{{APIHost}}"
 							],
 							"path": [
-								"api",
+								"auth",
 								"register"
 							]
 						}
@@ -72,20 +81,19 @@
 					"name": "Change profile info",
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjUyODIzNjE2LCJpYXQiOjE2NTI4MjE4MTYsImp0aSI6IjhhMjcyNGVlYWIwODQ0MmQ5OGNjZTkxODUyMTkxZTg3IiwidXNlcl9pZCI6N30.8kEYU-4yN9Q3VpBSTva86_5hgha6ceyhS4mdY6ygY-A",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "accessToken",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZTBhZjk3MjRkOGM1NjQ0NmY0MTNmMiIsIm5hbWUiOiJvbWFyIiwiZW1haWwiOiJvbWFyMTIzQGdtYWlsLmNvbSIsImlhdCI6MTY1ODg5MzA5M30.PXsUVbil4DG9YpZ-On9qyYeBFTFpdtshBk33yXOUuiE",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"New Name\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Omar\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -93,19 +101,19 @@
 							}
 						},
 						"url": {
-							"raw": "{{APIHost}}/api/profile/:id",
+							"raw": "{{APIHost}}/user/profile/:id",
 							"host": [
 								"{{APIHost}}"
 							],
 							"path": [
-								"api",
+								"user",
 								"profile",
 								":id"
 							],
 							"variable": [
 								{
 									"key": "id",
-									"value": ""
+									"value": "62e0af9724d8c56446f413f2"
 								}
 							]
 						}
@@ -116,40 +124,21 @@
 					"name": "Get current user profile",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "accessToken",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZTBhZjk3MjRkOGM1NjQ0NmY0MTNmMiIsIm5hbWUiOiJvbWFyIiwiZW1haWwiOiJvbWFyMTIzQGdtYWlsLmNvbSIsImlhdCI6MTY1ODg5MzA5M30.PXsUVbil4DG9YpZ-On9qyYeBFTFpdtshBk33yXOUuiE",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "{{APIHost}}/api/profile",
+							"raw": "{{APIHost}}/user/profile",
 							"host": [
 								"{{APIHost}}"
 							],
 							"path": [
-								"api",
+								"user",
 								"profile"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get user profile with id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{APIHost}}/api/profile/:id",
-							"host": [
-								"{{APIHost}}"
-							],
-							"path": [
-								"api",
-								"profile",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": null
-								}
 							]
 						}
 					},
@@ -164,20 +153,19 @@
 					"name": "Create log",
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjUyODIzNjE2LCJpYXQiOjE2NTI4MjE4MTYsImp0aSI6IjhhMjcyNGVlYWIwODQ0MmQ5OGNjZTkxODUyMTkxZTg3IiwidXNlcl9pZCI6N30.8kEYU-4yN9Q3VpBSTva86_5hgha6ceyhS4mdY6ygY-A",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "accessToken",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZTBhZjk3MjRkOGM1NjQ0NmY0MTNmMiIsIm5hbWUiOiJvbWFyIiwiZW1haWwiOiJvbWFyMTIzQGdtYWlsLmNvbSIsImlhdCI6MTY1ODg5MzA5M30.PXsUVbil4DG9YpZ-On9qyYeBFTFpdtshBk33yXOUuiE",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"temperature\": 38,\r\n    \"latitude\": 48.0232,\r\n    \"longitude\": 48.0232,\r\n    \"age\": 22,\r\n    \"gender\": true,\r\n    \"isVaccinated\": true,\r\n    \"timestamp\": \"2023-04-23T18:25:43.511Z\"\r\n}",
+							"raw": "{\r\n    \"temperature\": 38,\r\n    \"latitude\": 51.507351,\r\n    \"longitude\": -0.127758,\r\n    \"age\": 22,\r\n    \"gender\": true,\r\n    \"isVaccinated\": true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -227,13 +215,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{APIHost}}/api/logs?country=EGYPT",
+							"raw": "{{APIHost}}/api/logs/?country=EGYPT",
 							"host": [
 								"{{APIHost}}"
 							],
 							"path": [
 								"api",
-								"logs"
+								"logs",
+								""
 							],
 							"query": [
 								{
@@ -259,12 +248,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{APIHost}}/api/dashboard",
+							"raw": "{{APIHost}}/dashboard",
 							"host": [
 								"{{APIHost}}"
 							],
 							"path": [
-								"api",
 								"dashboard"
 							]
 						}
