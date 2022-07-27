@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { showLogs } = require("../controllers/log.js");
+const { showLogs, showLogsInCountry } = require("../controllers/log.js");
 const { validateToken } = require("../middlewares/auth");
 
 const router = express.Router();
