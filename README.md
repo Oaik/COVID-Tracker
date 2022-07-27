@@ -16,6 +16,7 @@
 ## Table of Contents
 - [Design of Database](#design-of-database)
 - [Design of API](#design-of-api)
+- [Front-End](#front-end)
 - [Built with](#built-with)
 
 ## Design of Database
@@ -156,11 +157,23 @@ Read postman docmentation collection for <a href="https://documenter.getpostman.
   </li>
 </ul>
 
+Note: I used api.geonames.org which is free api used to give you country name based on latitude and longitude
+
+## Front-End
+We will have 6 pages:
+- Home Page
+- Login page
+- Register Page
+- Profile page
+- Create Log Page
+- Dashboard page
+
 ## Built with
 <ul>
 <li>Nodejs</li>
 <li>Express</li>
 <li>MonogoDB</li>
+<li>Reactjs</li>
 </ul>
 
 
