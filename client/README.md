@@ -1,6 +1,7 @@
 ## Table of Contents
 - [Pages](#pages)
 - [Components](#components)
+- [Other Library](#other-library)
 - [Available Scripts](#available-scripts)
 
 ## Pages
@@ -18,6 +19,15 @@ We will have 6 pages:
 ## Components
 - navbar
 - footer
+- map
+
+
+## Other library
+- leaflet-react: React components for Leaflet maps
+- Leaflet: an open-source JavaScript library for mobile-friendly interactive maps
+- Axios: for making api calls
+
+Note: to embed Leaflet go to public/index.html and add the required scripts and style for more information see the <a href="https://leafletjs.com/examples/quick-start/">Documentation</a>
 
 
 ## Available Scripts

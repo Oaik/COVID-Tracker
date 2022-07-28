@@ -157,8 +157,6 @@ Read postman docmentation collection for <a href="https://documenter.getpostman.
   </li>
 </ul>
 
-Note: I used api.geonames.org which is free api used to give you country name based on latitude and longitude
-
 ## Front-End
 We will have 6 pages:
 - Home Page
