@@ -1,10 +1,13 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from "react-router-dom"
-
 import axios from 'axios';
+
+import AuthContext from '../../contexts/authContext';
 
 function Login() {
     const navigate = useNavigate()
+
+    const { setAuthState } = useContext(AuthContext);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -26,10 +29,15 @@ function Login() {
             'Content-Type': 'application/json'
         }}).then((response) => {
             if(response.data.accessToken) {
+                localStorage.setItem("accessToken", response.data.accessToken);
+                setAuthState({
+                    name: response.data.name,
+                    id: response.data.id,
+                    status: true,
+                });
                 navigate('/dashboard');
             }
-            
-            console.log("LOGIN: ", response.data.accessToken);
+
         })
     }
 

@@ -8,6 +8,12 @@ const User = require('../models/User');
 // others
 const config = require('../config.json');
 
+const tokenVerfication = (req, res) => {
+    return res.json({
+        ...req.user
+    });
+}
+
 const register = (req, res) => {
     bcrypt.hash(req.body.password, 5).then((hashedPassword) => {
         const newUser = new User({
@@ -64,6 +70,7 @@ const login = (req, res) => {
 }
 
 module.exports = {
+    tokenVerfication,
     register,
     login
 }
