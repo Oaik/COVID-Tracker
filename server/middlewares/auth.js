@@ -5,7 +5,7 @@ const config = require('../config.json');
 const validateToken = async (req, res, next) => {
     const accessToken = req.headers.accesstoken;
     if(!accessToken) {
-        return res.send("Unauthorized to visit this page please login first");
+        return res.json({error: error, errorMessage: "Unauthorized to visit this page please login first"});
     }
 
     try {

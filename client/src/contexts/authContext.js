@@ -20,6 +20,7 @@ export const AuthProvider = ({ children }) => {
           if (response.data.error) {
             setAuthState({ ...authState, status: false });
           } else {
+            console.log("tany", response.data);
             setAuthState({
               name: response.data.name,
               id: response.data.id,

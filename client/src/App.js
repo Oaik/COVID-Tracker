@@ -13,6 +13,7 @@ import Footer from "./components/footer/footer";
 import Home from "./pages/home/Home";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Log from "./pages/log/Log";
+import Profile from "./pages/profile/Profile";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 
@@ -32,6 +33,7 @@ function App() {
             <Route path="/" exact element={<Home/>}/>
             <Route path="/dashboard" exact element={<Dashboard/>}/>
             <Route path="/log" exact element={<Log/>}/>
+            <Route path="/profile" exact element={<Profile/>}/>
             <Route path="/login" exact element={<Login/>}/>
             <Route path="/register" exact element={<Register/>}/>
             <Route path="/logout" exact element={<Logout/>}/>
