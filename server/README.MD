@@ -22,7 +22,18 @@ Also the <a href="https://github.com/Oaik/COVID-Tracker/edit/main/README.md#desi
 
 
 ## Built with
-Nodejs, express, monogodb
+<ul>
+<li>
+<a href="https://nodejs.org/en/">Nodejs</a>
+</li>
+<li>
+<a href="https://expressjs.com/">Express</a>
+</li>
+<li>
+<a href="https://www.mongodb.com/">MonogoDB</a>
+</li>
+</ul>
+
 
 Used JWT for authentication
 
@@ -38,11 +49,12 @@ http://api.geonames.org/countryCodeJSON?lat=${latitude}&lng=${longitude}&usernam
 
 
 response request will be in form to:
-<code>
+
+<pre>
 {
     "languages":"tr-TR,ku,diq,az,av",
     "distance":"0",
     "countryCode":"TR",
     "countryName":"Turkey"
 }
-</code>
+</pre>

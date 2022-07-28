@@ -23,9 +23,22 @@ We will have 6 pages:
 
 
 ## Other library
-- leaflet-react: React components for Leaflet maps
-- Leaflet: an open-source JavaScript library for mobile-friendly interactive maps
-- Axios: for making api calls
+<ul>
+<li>
+<a href="https://react-leaflet.js.org/">leaflet-react: </a>
+React components for Leaflet maps
+</li>
+<li>
+<a href="https://leafletjs.com/">Leaflet: </a>
+an open-source JavaScript library for mobile-friendly interactive maps
+</li>
+<li>
+<a href="https://axios-http.com/docs/intro">Axios: </a>
+</li>
+<li>
+<a href="https://reactjs.org/">Reactjs</a>
+</li>
+</ul>
 
 Note: to embed Leaflet go to public/index.html and add the required scripts and style for more information see the <a href="https://leafletjs.com/examples/quick-start/">Documentation</a>
 

@@ -18,6 +18,7 @@
 - [Design of API](#design-of-api)
 - [Front-End](#front-end)
 - [Built with](#built-with)
+- [Screenshots for the website](#built-with)
 
 ## Design of Database
 First step is creating the database of our backend
@@ -29,7 +30,7 @@ you can see the schema <a href="https://dbdiagram.io/d/62e03cde0d66c746555703fc"
 
 <img src="/screenshots/COVID-Tracker.png" />
 
-Node: there will be an index on country column so we can fetch queries for single country faster
+Node: there will be an index on country column so we can fetch queries for <b>single country</b> faster
 
 ## Design of API
 
@@ -168,10 +169,18 @@ We will have 6 pages:
 
 ## Built with
 <ul>
-<li>Nodejs</li>
-<li>Express</li>
-<li>MonogoDB</li>
-<li>Reactjs</li>
+<li>
+<a href="https://nodejs.org/en/">Nodejs</a>
+</li>
+<li>
+<a href="https://expressjs.com/">Express</a>
+</li>
+<li>
+<a href="https://www.mongodb.com/">MonogoDB</a>
+</li>
+<li>
+<a href="https://reactjs.org/">Reactjs</a>
+</li>
 </ul>
 
 
