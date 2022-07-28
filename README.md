@@ -14,11 +14,32 @@
 </div>
 
 ## Table of Contents
+- [About the Project](#about)
+  - [Build with](#build-with)
 - [Design of Database](#design-of-database)
 - [Design of API](#design-of-api)
 - [Front-End](#front-end)
 - [Built with](#built-with)
 - [Screenshots for the website](#built-with)
+
+## About
+  > Covid-Tracker is a fully responsive tracker app that is used for recording logs with temperature in each country built using [reactjs](https://reactjs.org/).
+
+### Built with
+<ul>
+<li>
+<a href="https://nodejs.org/en/">Nodejs</a>
+</li>
+<li>
+<a href="https://expressjs.com/">Express</a>
+</li>
+<li>
+<a href="https://www.mongodb.com/">MonogoDB</a>
+</li>
+<li>
+<a href="https://reactjs.org/">Reactjs</a>
+</li>
+</ul>
 
 ## Design of Database
 First step is creating the database of our backend
@@ -166,22 +187,6 @@ We will have 6 pages:
 - Profile page
 - Create Log Page
 - Dashboard page
-
-## Built with
-<ul>
-<li>
-<a href="https://nodejs.org/en/">Nodejs</a>
-</li>
-<li>
-<a href="https://expressjs.com/">Express</a>
-</li>
-<li>
-<a href="https://www.mongodb.com/">MonogoDB</a>
-</li>
-<li>
-<a href="https://reactjs.org/">Reactjs</a>
-</li>
-</ul>
 
 
 
