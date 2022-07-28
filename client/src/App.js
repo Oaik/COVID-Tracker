@@ -6,6 +6,7 @@ import {
 
 // components
 import Navbar from "./components/navbar/navbar";
+import Logout from "./components/logout/Logout";
 import Footer from "./components/footer/footer";
 
 // pages
@@ -33,6 +34,7 @@ function App() {
             <Route path="/log" exact element={<Log/>}/>
             <Route path="/login" exact element={<Login/>}/>
             <Route path="/register" exact element={<Register/>}/>
+            <Route path="/logout" exact element={<Logout/>}/>
           </Routes>
         </BrowserRouter>
       </AuthProvider>

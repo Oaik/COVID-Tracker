@@ -1,14 +1,27 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 
+import AuthContext from '../../contexts/authContext';
+
 const Navbar = () => {
+    const { authState } = useContext(AuthContext);
+
     return (
     <div>
         <Link to="/"> Home</Link>
         <Link to="/dashboard"> Dashboard</Link>
-        <Link to="/log"> Log</Link>
-        <Link to="/login"> Login</Link>
-        <Link to="/register"> Register</Link>
-        <Link to="/logout"> Logout</Link>
+        {authState.status ? 
+        <>
+            <Link to="/log"> Log</Link>
+            <Link to="/logout"> Logout</Link>
+        </>
+        :
+        <>
+            <Link to="/login"> Login</Link>
+            <Link to="/register"> Register</Link>
+        </>
+        }
+
     </div>
     )
 };
