@@ -8,10 +8,10 @@ function Dashboard() {
 
     useEffect(() => {
         axios.get("http://localhost:8000/dashboard").then((response) => {
-            console.log(response.data);
+
             setStatistics(response.data);
         }).catch((e) => console.log(e));
-    }, []);
+    });
 
     return (
         <div>
