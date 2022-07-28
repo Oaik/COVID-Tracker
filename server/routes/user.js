@@ -5,7 +5,7 @@ const { validateToken } = require("../middlewares/auth");
 
 const router = express.Router();
 
-router.get("/profile", validateToken, showCurrentUser)
+router.post("/profile", validateToken, showCurrentUser)
 
 router.put("/profile/:id", validateToken, updateCurrentUser)
 

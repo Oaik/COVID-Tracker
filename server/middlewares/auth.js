@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 const config = require('../config.json');
 
-const validateToken = (req, res, next) => {
+const validateToken = async (req, res, next) => {
     const accessToken = req.headers.accesstoken;
     if(!accessToken) {
         return res.send("Unauthorized to visit this page please login first");
