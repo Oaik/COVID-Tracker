@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
-
+import { useNavigate } from "react-router-dom"
 import axios from 'axios';
 
-
-
 function Log() {
+    const navigate = useNavigate()
 
     const [temperature, setTemperature] = useState(0);
     const [latitude, setLatitude] = useState(0);
@@ -30,9 +29,11 @@ function Log() {
     }
 
     useEffect(() => {
+        if (!localStorage.getItem("accessToken")) {
+            navigate('/login');
+        }
+        
         navigator.geolocation.getCurrentPosition(function(position) {
-            // console.log("Latitude is :", position.coords.latitude);
-            // console.log("Longitude is :", position.coords.longitude);
             setLatitude(position.coords.latitude);
             setLongitude(position.coords.longitude);
           });
@@ -58,7 +59,7 @@ function Log() {
         }, {            
             headers: {
             'Content-Type': 'application/json',
-            'accessToken': "accesstoken"
+            'accessToken': localStorage.getItem("accessToken")
         }}).then((response) => {
             console.log("log", response.data);
         })
