@@ -15,10 +15,12 @@ const showDashboard = async (req, res) => {
             logsByCountryContainer[countryName] = {
                 countryName: countryName,
                 countryCode: countryCode,
+                latitude: logs[i].latitude,
+                longitude: logs[i].longitude,
                 length: 0,
                 data: []
             };
-            countries.push(country);
+            countries.push(countryName);
         }
 
         logsByCountryContainer[countryName].data.push(logs[i]);
