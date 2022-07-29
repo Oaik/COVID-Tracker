@@ -11,27 +11,28 @@ function Login() {
 
     const { setAuthState } = useContext(AuthContext);
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [userState, setUserState] = useState({
+        email: "",
+        password: ""
+    })
 
-    const changeInputEmail = (event) => {
-        setEmail(event.target.value)
-    }
-
-    const changeInputPassword = (event) => {
-        setPassword(event.target.value)
+    const updateInputAttribute = (event) => {
+        setUserState({
+            ...userState,
+            [event.target.name]: event.target.value
+        })
     }
 
     const loginUser = (event) => {
         event.preventDefault();
 
         axios.post("http://localhost:8000/auth/login", {
-            email,
-            password
+            ...userState
         }, {            
             headers: {
                 'Content-Type': 'application/json'
-        }}).then((response) => {
+            }
+        }).then((response) => {
             if(response.data.accessToken) {
                 localStorage.setItem("accessToken", response.data.accessToken);
 
@@ -44,20 +45,22 @@ function Login() {
                 navigate('/dashboard');
             }
 
+        }).catch((error) => {
+            console.log("Error while logging", error);
         })
     }
 
     return (
         <Form>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-                <FloatingLabel controlId="floatingInput" label="Email" className="mt-3">
-                    <Form.Control name='email' type="email" placeholder="Enter email" onChange={changeInputEmail} />
+            <Form.Group className="mb-3" controlId="email">
+                <FloatingLabel controlId="email" label="Email" className="mt-3">
+                    <Form.Control name='email' type="email" placeholder="Enter email" onChange={updateInputAttribute} />
                 </FloatingLabel>
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-                <FloatingLabel controlId="floatingInput" label="Password" className="mt-3">
-                    <Form.Control name='email' type="email" placeholder="Enter email" onChange={changeInputPassword} />
+            <Form.Group className="mb-3" controlId="password">
+                <FloatingLabel controlId="password" label="Password" className="mt-3">
+                    <Form.Control name='password' type="password" placeholder="Enter password" onChange={updateInputAttribute} />
                 </FloatingLabel>
             </Form.Group>
 

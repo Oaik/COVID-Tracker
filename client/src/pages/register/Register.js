@@ -1,36 +1,35 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom"
-
 import axios from 'axios';
+
+import { Form, Button, FloatingLabel } from 'react-bootstrap';
 
 function Register() {
     const navigate = useNavigate()
 
-    const [email, setEmail] = useState("");
-    const [name, setName] = useState("");
-    const [password, setPassword] = useState("");
+    const [userState, setUserState] = useState({
+        email: "",
+        name: "",
+        password: ""
+    })
 
-    const changeInputEmail = (event) => {
-        setEmail(event.target.value)
+    const updateInputAttribute = (event) => {
+        setUserState({
+            ...userState,
+            [event.target.name]: event.target.value
+        })
     }
 
-    const changeInputName = (event) => {
-        setName(event.target.value)
-    }
+    const registerUser = (event) => {
+        event.preventDefault();
 
-    const changeInputPassword = (event) => {
-        setPassword(event.target.value)
-    }
-
-    const registerUser = () => {
         axios.post("http://localhost:8000/auth/register", {
-            email,
-            name,
-            password
+            ...userState
         }, {            
             headers: {
-            'Content-Type': 'application/json'
-        }}).then((response) => {
+                'Content-Type': 'application/json'
+            }
+        }).then((response) => {
             if(response.data === "User created") {
                 navigate('/login');
             } else {
@@ -40,26 +39,30 @@ function Register() {
     }
 
     return (
-        <div>
-            <div>
-                <span>Email</span>
-                <input name='email' type="text" onChange={changeInputEmail}/>
-            </div>
+        <Form>
+            <Form.Group className="mb-3" controlId="email">
+                <FloatingLabel controlId="email" label="Email" className="mt-3">
+                    <Form.Control name='email' type="email" placeholder="Enter email" onChange={updateInputAttribute} />
+                </FloatingLabel>
+            </Form.Group>
 
-            <div>
-                <span>name</span>
-                <input name='name' type="text" onChange={changeInputName}/>
-            </div>
+            <Form.Group className="mb-3" controlId="name">
+                <FloatingLabel controlId="name" label="Name" className="mt-3">
+                    <Form.Control name='name' type="text" placeholder="Enter name" onChange={updateInputAttribute} />
+                </FloatingLabel>
+            </Form.Group>
 
-            <div>
-                <span>password</span>
-                <input name='password' type="text" onChange={changeInputPassword} />
-            </div>
+            <Form.Group className="mb-3" controlId="password">
+                <FloatingLabel controlId="password" label="Password" className="mt-3">
+                    <Form.Control name='password' type="password" placeholder="Enter password" onChange={updateInputAttribute} />
+                </FloatingLabel>
+            </Form.Group>
 
-            <button onClick={registerUser} >
+            <Button variant="primary" type="submit" onClick={registerUser}>
                 Register
-            </button>
-        </div>
+            </Button>
+        </Form>
+        
     )
 }
 
