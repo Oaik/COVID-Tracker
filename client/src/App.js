@@ -5,6 +5,8 @@ import {
 } from "react-router-dom";
 
 // components
+import {Container} from 'react-bootstrap';
+
 import Navbar from "./components/navbar/navbar";
 import Logout from "./components/logout/Logout";
 import Footer from "./components/footer/footer";
@@ -20,6 +22,8 @@ import Register from "./pages/register/Register";
 // contexts
 import { AuthProvider } from "./contexts/authContext";
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import './App.css';
 
 function App() {
@@ -28,16 +32,20 @@ function App() {
       <AuthProvider>
         <BrowserRouter>
           <Navbar />
+          <Container>
 
-          <Routes>
-            <Route path="/" exact element={<Home/>}/>
-            <Route path="/dashboard" exact element={<Dashboard/>}/>
-            <Route path="/log" exact element={<Log/>}/>
-            <Route path="/profile" exact element={<Profile/>}/>
-            <Route path="/login" exact element={<Login/>}/>
-            <Route path="/register" exact element={<Register/>}/>
-            <Route path="/logout" exact element={<Logout/>}/>
-          </Routes>
+              <Routes>
+                <Route path="/" exact element={<Home/>}/>
+                <Route path="/dashboard" exact element={<Dashboard/>}/>
+                <Route path="/log" exact element={<Log/>}/>
+                <Route path="/profile" exact element={<Profile/>}/>
+                <Route path="/login" exact element={<Login/>}/>
+                <Route path="/register" exact element={<Register/>}/>
+                <Route path="/logout" exact element={<Logout/>}/>
+              </Routes>
+
+          </Container>
+
         </BrowserRouter>
       </AuthProvider>
 

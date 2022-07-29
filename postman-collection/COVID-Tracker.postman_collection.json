@@ -7,8 +7,35 @@
 	},
 	"item": [
 		{
-			"name": "registration/login",
+			"name": "Auth",
 			"item": [
+				{
+					"name": "registration",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"omar123@gmail.com\",\r\n    \"name\": \"omar\",\r\n    \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{APIHost}}/auth/register",
+							"host": [
+								"{{APIHost}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
 				{
 					"name": "login",
 					"request": {
@@ -46,13 +73,25 @@
 					"response": []
 				},
 				{
-					"name": "registration",
+					"name": "verfiyToken",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
-						"method": "POST",
-						"header": [],
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accessToken",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZTBhZjk3MjRkOGM1NjQ0NmY0MTNmMiIsIm5hbWUiOiJvbWFyIiwiZW1haWwiOiJvbWFyMTIzQGdtYWlsLmNvbSIsImlhdCI6MTY1ODg5MzA5M30.PXsUVbil4DG9YpZ-On9qyYeBFTFpdtshBk33yXOUuiE",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"omar123@gmail.com\",\r\n    \"name\": \"omar\",\r\n    \"password\": \"123\"\r\n}",
+							"raw": "{\r\n    \"email\": \"omar123@gmail.com\",\r\n    \"password\": \"123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -60,13 +99,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{APIHost}}/auth/register",
+							"raw": "{{APIHost}}/auth/auth",
 							"host": [
 								"{{APIHost}}"
 							],
 							"path": [
 								"auth",
-								"register"
+								"auth"
 							]
 						}
 					},
@@ -123,7 +162,7 @@
 				{
 					"name": "Get current user profile",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [
 							{
 								"key": "accessToken",
@@ -165,7 +204,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"temperature\": 38,\r\n    \"latitude\": 51.507351,\r\n    \"longitude\": -0.127758,\r\n    \"age\": 22,\r\n    \"gender\": true,\r\n    \"isVaccinated\": true\r\n}",
+							"raw": "{\r\n    \"temperature\": 38,\r\n    \"latitude\":  31.2672256,\r\n    \"longitude\": 30.0056576,\r\n    \"age\": 22,\r\n    \"gender\": true,\r\n    \"isVaccinated\": true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -215,7 +254,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{APIHost}}/api/logs/?country=EGYPT",
+							"raw": "{{APIHost}}/api/logs/?country=Egypt",
 							"host": [
 								"{{APIHost}}"
 							],
@@ -227,7 +266,7 @@
 							"query": [
 								{
 									"key": "country",
-									"value": "EGYPT"
+									"value": "Egypt"
 								}
 							]
 						}
