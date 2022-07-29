@@ -36,6 +36,7 @@ function Login() {
             if(response.data.accessToken) {
                 localStorage.setItem("accessToken", response.data.accessToken);
 
+                console.log("inside login", response.data);
                 setAuthState({
                     name: response.data.name,
                     id: response.data.id,

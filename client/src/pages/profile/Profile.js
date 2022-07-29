@@ -25,7 +25,6 @@ function Profile() {
             'Content-Type': 'application/json',
             'accessToken': localStorage.getItem("accessToken")
         }}).then((response) => {
-            console.log(response.data)
             localStorage.setItem("accessToken", response.data.accessToken)
 
             setAuthState({
@@ -36,6 +35,10 @@ function Profile() {
     }
 
     useEffect(() => {
+        if(!localStorage.getItem("accessToken")) {
+            navigate('/');
+        }
+
         axios.post("http://localhost:8000/user/profile/", {}, {            
             headers: {
             'Content-Type': 'application/json',

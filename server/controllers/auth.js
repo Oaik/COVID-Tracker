@@ -54,6 +54,7 @@ const login = (req, res) => {
 
             return res.json({
                 accessToken: token,
+                id: user._id,
                 name: user.name
             });
         }).catch( (error) => {
