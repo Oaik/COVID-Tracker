@@ -34,9 +34,6 @@ const Navbar = () => {
                 </Nav>
                 <Nav>
                     <Link to="/deets" className="nav-link">More deets</Link>
-                    <Link eventKey={2} to="/memes" className="nav-link">
-                        Dank memes
-                    </Link>
                 </Nav>
             </NavbarBootstrap.Collapse>
         </Container>
