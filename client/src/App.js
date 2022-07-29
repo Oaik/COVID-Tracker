@@ -32,19 +32,16 @@ function App() {
       <AuthProvider>
         <BrowserRouter>
           <Navbar />
-          <Container>
 
-              <Routes>
-                <Route path="/" exact element={<Home/>}/>
-                <Route path="/dashboard" exact element={<Dashboard/>}/>
-                <Route path="/log" exact element={<Log/>}/>
-                <Route path="/profile" exact element={<Profile/>}/>
-                <Route path="/login" exact element={<Login/>}/>
-                <Route path="/register" exact element={<Register/>}/>
-                <Route path="/logout" exact element={<Logout/>}/>
-              </Routes>
-
-          </Container>
+            <Routes>
+              <Route path="/" exact element={<Home/>}/>
+              <Route path="/dashboard" exact element={<Dashboard/>}/>
+              <Route path="/log" exact element={<Log/>}/>
+              <Route path="/profile" exact element={<Profile/>}/>
+              <Route path="/login" exact element={<Login/>}/>
+              <Route path="/register" exact element={<Register/>}/>
+              <Route path="/logout" exact element={<Logout/>}/>
+            </Routes>
 
         </BrowserRouter>
       </AuthProvider>

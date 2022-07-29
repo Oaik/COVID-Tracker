@@ -1,9 +1,16 @@
+import { Container } from "react-bootstrap";
+
 const Footer = () => {
   return (
-    <div className="footer">
-      
-      <p>Copyright © 2022 <a href="https://www.linkedin.com/in/oaik/">Omar Morsy</a></p>
+    <div className="bg-dark">
+      <Container>
+        <div className="footer">
+          
+          <p className="text-light">Copyright © 2022 <a className="text-white" href="https://www.linkedin.com/in/oaik/">Omar Morsy</a></p>
+        </div>
+      </Container>
     </div>
+
   );
 };
 

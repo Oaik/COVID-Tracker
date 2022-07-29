@@ -87,7 +87,7 @@ function Log() {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="gender">
-                <Form.Check onChange={updateInputAttribute}
+                {/* <Form.Check onChange={updateInputAttribute}
                     type="radio"
                     id="gender"
                     name="gender"
@@ -100,7 +100,14 @@ function Log() {
                     name="gender"
                     label="Female"
                     value="Female"
-                />
+                /> */}
+                    <FloatingLabel controlId="floatingSelect" label="Select your gender">
+                        <Form.Select aria-label="Floating label select example">
+                            <option value="Other">...</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </Form.Select>
+                    </FloatingLabel>
             </Form.Group>
 
             <Button variant="primary" type="submit" onClick={createLog}>
