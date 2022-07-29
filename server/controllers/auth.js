@@ -69,8 +69,14 @@ const login = (req, res) => {
     })
 }
 
+const logout = (req, res) => {
+    req.user = null;
+    res.send("Logout success");
+}
+
 module.exports = {
     tokenVerfication,
     register,
-    login
+    login,
+    logout
 }
