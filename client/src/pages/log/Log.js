@@ -2,30 +2,40 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom"
 import axios from 'axios';
 
+import { Form, Button, FloatingLabel } from 'react-bootstrap';
+
 function Log() {
     const navigate = useNavigate()
 
-    const [temperature, setTemperature] = useState(0);
-    const [latitude, setLatitude] = useState(0);
-    const [longitude, setLongitude] = useState(0);
-    const [age, setAge] = useState(0);
-    const [isVaccinated, setIsVaccinated] = useState(false);
-    const [gender, setGender] = useState(false);
+    const [logState, setLogState] = useState({
+        temperature: 0,
+        latitude: 0,
+        longitude: 0,
+        age: 0,
+        isVaccinated: false,
+        gender: "Other"
+    })
 
-    const changeInputTemperature = (event) => {
-        setTemperature(event.target.value)
+    const updateInputAttribute = (event) => {
+        setLogState({
+            ...logState,
+            [event.target.name]: event.target.value
+        })
     }
 
-    const changeInputAge = (event) => {
-        setAge(event.target.value)
+    const changeCheckboxInput = (event) => {
+        setLogState({
+            ...logState,
+            [event.target.name]: event.target.checked
+        })
     }
 
-    const changeIsVaccinated = (event) => {
-        setIsVaccinated(event.target.checked)
-    }
-
-    const changeInputGender = (event) => {
-        setGender(event.target.value)
+    const setPositionCoordinaties = (coordinaties) => {
+        setLogState({
+            ...logState,
+            longitude: coordinaties.longitude,
+            latitude: coordinaties.latitude
+        })
     }
 
     useEffect(() => {
@@ -33,67 +43,70 @@ function Log() {
             navigate('/login');
         }
         
-        navigator.geolocation.getCurrentPosition(function(position) {
-            setLatitude(position.coords.latitude);
-            setLongitude(position.coords.longitude);
-          });
+        navigator.geolocation.getCurrentPosition((position) => {
+            setPositionCoordinaties(position.coords);
+        });
     }, [])
 
-    const createLog = () => {
-        const obj = {
-            temperature,
-            latitude,
-            longitude,
-            age,
-            gender,
-            isVaccinated
-        };
-        console.log(obj);
+    const createLog = (event) => {
+        event.preventDefault();
+        console.log(logState);
         axios.post("http://localhost:8000/api/log", {
-            temperature,
-            latitude,
-            longitude,
-            age,
-            gender,
-            isVaccinated            
+            ...logState          
         }, {            
             headers: {
-            'Content-Type': 'application/json',
-            'accessToken': localStorage.getItem("accessToken")
-        }}).then((response) => {
+                'Content-Type': 'application/json',
+                'accessToken': localStorage.getItem("accessToken")
+            }
+        }).then((response) => {
             console.log("log", response.data);
         })
     }
 
     return (
-        <div>
-            <div>
-                <span>Temperature</span>
-                <input name='temperature' type="number" onChange={changeInputTemperature}/>
-            </div>
+        <Form>
+            <Form.Group className="mb-3" controlId="email">
+                <FloatingLabel controlId="temperature" label="temperature" className="mt-3">
+                    <Form.Control name='temperature' type="number" placeholder="Enter temperature" onChange={updateInputAttribute} />
+                </FloatingLabel>
+            </Form.Group>
 
-            <div>
-                <span>Age</span>
-                <input name='name' type="number" onChange={changeInputAge}/>
-            </div>
+            <Form.Group className="mb-3" controlId="name">
+                <FloatingLabel controlId="age" label="age" className="mt-3">
+                    <Form.Control name='age' type="number" placeholder="Enter age" onChange={updateInputAttribute} />
+                </FloatingLabel>
+            </Form.Group>
 
-            <div>
-                <span>Are You Vaccinated?</span>
-                <input name="isVaccinated" type="checkbox" onChange={changeIsVaccinated} />
-            </div>
+            <Form.Group className="mb-3" controlId="isVaccinated">
+                <Form.Check onChange={changeCheckboxInput}
+                    type="switch"
+                    id="isVaccinated"
+                    name="isVaccinated"
+                    label="Are you Vaccinated"
+                />
+            </Form.Group>
 
-            <div>
-                <span>Gender</span>
-                <input name="gender" type="radio" value="true" onChange={changeInputGender} />
-                <label>Male</label>
-                <input name="gender" type="radio" value="false" onChange={changeInputGender} />
-                <label>Female</label>
-            </div>
+            <Form.Group className="mb-3" controlId="gender">
+                <Form.Check onChange={updateInputAttribute}
+                    type="radio"
+                    id="gender"
+                    name="gender"
+                    label="Male"
+                    value="Male"
+                />
+                <Form.Check onChange={updateInputAttribute}
+                    type="radio"
+                    id="gender"
+                    name="gender"
+                    label="Female"
+                    value="Female"
+                />
+            </Form.Group>
 
-            <button onClick={createLog} >
+            <Button variant="primary" type="submit" onClick={createLog}>
                 Create new log
-            </button>
-        </div>
+            </Button>
+        </Form>
     )
 }
 

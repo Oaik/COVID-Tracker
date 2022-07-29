@@ -31,7 +31,8 @@ const LogSchema = new Schema({
         type: Number,
     },
     gender: {
-        type: Boolean,
+        type: String,
+        enum: ["Male", "Female", "Other"]
     },
     isVaccinated: {
         type: Boolean,

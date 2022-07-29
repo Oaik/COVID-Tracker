@@ -17,8 +17,9 @@ const showLogsInCountry = async (country) => {
 }
 
 const createLog = async (req, res) => {
+    console.log(req.body.latitude, req.body.longitude)
     const countryList = await findCountry(req.body.latitude, req.body.longitude).catch((error) => {
-        console.log("error while finding the country", error);
+        console.log("error while finding the country");
 
         return res.json({error});
     });
@@ -28,6 +29,8 @@ const createLog = async (req, res) => {
         user_id: req.user.id,
         ...countryList
     })
+
+    console.log(newLog);
     
     newLog.save().catch((error) => {
         console.log("Error while saving the log", error);
