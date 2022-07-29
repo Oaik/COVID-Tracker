@@ -9,31 +9,37 @@ const Navbar = () => {
     const { authState } = useContext(AuthContext);
 
     return (
-    <NavbarBootstrap bg="light" expand="lg">
-      <Container>
-        <NavbarBootstrap.Brand>
-            <Link to="/"> React-Bootstrap</Link>
-        </NavbarBootstrap.Brand>
-        <NavbarBootstrap.Toggle aria-controls="basic-navbar-nav" />
-        <NavbarBootstrap.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Link to="/"> Home</Link>
-            <Link to="/dashboard"> Dashboard</Link>
-            {authState.status ? 
-            <>
-                <Link to="/log"> Log</Link>
-                <Link to="/profile"> Profile</Link>
-                <Link to="/logout"> Logout</Link>
-            </>
-            :
-            <>
-                <Link to="/login"> Login</Link>
-                <Link to="/register"> Register</Link>
-            </>
-            }
-          </Nav>
-        </NavbarBootstrap.Collapse>
-      </Container>
+        <NavbarBootstrap bg="dark" variant="dark" expand="lg">
+        <Container>
+            <NavbarBootstrap.Brand>
+                <Link to="/" className="navbar-brand">React-Bootstrap</Link>
+            </NavbarBootstrap.Brand>
+            <NavbarBootstrap.Toggle aria-controls="basic-navbar-nav" />
+            <NavbarBootstrap.Collapse id="basic-navbar-nav">
+                <Nav className="me-auto">
+                    <Link to="/" className="nav-link">Home</Link>
+                    <Link to="/dashboard" className="nav-link"> Dashboard</Link>
+                    {authState.status ? 
+                        <>
+                        <Link to="/log" className="nav-link">Log</Link>
+                        <Link to="/profile" className="nav-link">Profile</Link>
+                        <Link to="/logout" className="nav-link">Logout</Link>
+                        </>
+                        :
+                        <>
+                        <Link to="/login" className="nav-link">Login</Link>
+                        <Link to="/register" className="nav-link">Register</Link>
+                        </>
+                    }
+                </Nav>
+                <Nav>
+                    <Link to="/deets" className="nav-link">More deets</Link>
+                    <Link eventKey={2} to="/memes" className="nav-link">
+                        Dank memes
+                    </Link>
+                </Nav>
+            </NavbarBootstrap.Collapse>
+        </Container>
     </NavbarBootstrap>
     )
 };
