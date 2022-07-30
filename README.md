@@ -74,19 +74,9 @@ We will have 6 pages:
 After I integrataed Bootstrap into the front-end app I started to make the UI bettter
 
 ## UI-UX
-For each page I started to find inspiration to create it
+For each page I started to see a lot of websites to find an inspiration to create each page
 
-- Login page: I made something like facebook login page
-
-- Register page: I was thinking about a smart way to display the terms and policy that the user should accept in order to sign up so I decided to make the register form on the left and the some info with the terms on the right 
-
-- profile page: inspired somehow with github profile page so you can see the basic info of your profile on the left and majority of the screen will show the logs
-
-- create log page:
-
-- Dashboard: 
-
-I have collected images for the project from unsplash the images this is the list of images I have collected
+I have collected images for the project from unsplash this is the list of images I have collected
 - https://unsplash.com/photos/Q1p7bh3SHj8
 - https://unsplash.com/photos/Besxfn2Z8fo
 - https://unsplash.com/photos/Oz_J_FXKvIs

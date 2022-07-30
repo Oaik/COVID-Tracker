@@ -35,13 +35,15 @@ function Dashboard() {
 
     return (
         <div className="">
-
-            <Container fluid className="dashboard-intro">
-                <div className="dashboard-intro-caption text-center">
-                    <h2>Live stats</h2>
+            <div className="dashboard-intro d-flex align-items-center justify-content-center">
+                <div className="dashboard-intro-caption text-light">
+                    <h2>Live Stats Dashboard </h2>
                 </div>
 
-            </Container>
+            </div>
+
+
+
 
 
             <div>

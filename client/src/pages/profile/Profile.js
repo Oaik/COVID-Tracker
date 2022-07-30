@@ -117,8 +117,11 @@ function Profile() {
 
                     <Col md={{span: 6}} className='pt-5'>
                         <h5>
-                            Show all logs
+                            Your Logs
+                            
                         </h5>
+                        
+                        <hr />
 
                         <h5>
                             You have created {userLogs.length} logs
