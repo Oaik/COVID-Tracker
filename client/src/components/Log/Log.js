@@ -2,11 +2,14 @@
 
 function Log(props) {
     return(
-        <div className="">
-            All logs will be shown...
-            
-            {props.log.countryName}
-        </div>
+        <tr>
+            <td>{props.index}</td>
+            <td>{props.log.temperature}</td>
+            <td>{props.log.countryName}</td>
+            <td>{props.log.age}</td>
+            <td>{props.log.gender}</td>
+            <td>{props.log.isVaccinated ? "Yes" : "No"}</td>
+        </tr>
     )
 }
 

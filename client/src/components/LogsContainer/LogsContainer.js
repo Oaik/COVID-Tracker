@@ -1,13 +1,16 @@
+import {Table} from "react-bootstrap"
+
 import Log from "../Log/Log";
 
 function LogsContainer(props) {
     return(
         <div className="">
-            All logs will be shown...
-            {props.logs ?
+            { (props.logs && props.logs.length > 0) ?
                 (
                     <div>
-                        {props.logs.length}
+                        {
+                            <TableLog logs={props.logs}/>
+                        }
                     </div>
                 ) 
                 : 
@@ -18,13 +21,35 @@ function LogsContainer(props) {
                 )
             }
 
-            {/* {props.logs.map((log, index) => {
-                return (
-                    <Log key={index} log={log}>
-                    </Log>
-                )
-            })} */}
         </div>
+    )
+}
+
+const TableLog = (props) => {
+    return (
+        <Table striped bordered hover>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Temperature</th>
+                    <th>countryName</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Vaccinated</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {
+                    props.logs.map((log, index) => {
+                        return (
+                            <Log key={index} index={index} log={log}>
+                            </Log>
+                        )
+                    })
+                }
+            </tbody>
+        </Table>
     )
 }
 

@@ -3,11 +3,17 @@ const jwt = require("jsonwebtoken");
 
 // models
 const User = require('../models/User');
+const Log = require('../models/Log');
 
 const config = require('../config.json');
 
-const showCurrentUser = (req, res) => {    
-    return res.json(req.user);
+const showCurrentUser = async (req, res) => {
+    const userInfo = {
+        ...req.user,
+        logs: await Log.find({user_id: req.user.id})
+    }
+
+    return res.json(userInfo);
 }
 
 const updateCurrentUser = async (req, res) => {

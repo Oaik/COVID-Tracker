@@ -73,13 +73,9 @@ function Profile() {
 
     return (
         <div>
-
-
-
-
             <Container fluid>
                 <Row className=''>
-                    <Col xs={{span: 12}} md={{span: 4, offset: 1}} className="pt-5">
+                    <Col xs={{span: 12}} md={{span: 3, offset: 1}} className="pt-5">
                         
                         <img src="https://i.pravatar.cc/150?img=60" className="rounded-circle mb-3"/>
                         {!isUpdating ? 
@@ -89,9 +85,9 @@ function Profile() {
                                     Hello, {authState.name}
                                 </h3>
 
-                            <Button variant="dark" type="submit" onClick={toogleUpdateForm}>
-                                update Profile
-                            </Button>
+                                <Button variant="dark" type="submit" onClick={toogleUpdateForm}>
+                                    update Profile
+                                </Button>
                             </div>
 
                         ) 
@@ -114,11 +110,15 @@ function Profile() {
 
                     </Col>
 
-                    <Col md={{span: 7}} className='pt-5'>
+                    <Col md={{span: 6}} className='pt-5'>
                         <h5>
                             Show all logs
                         </h5>
 
+                        <h5>
+                            You have created {userLogs.length} logs
+                        </h5>
+                        
                         <LogsContainer logs={userLogs} />
                     </Col>
 
