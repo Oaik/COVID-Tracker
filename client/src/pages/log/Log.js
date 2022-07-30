@@ -17,6 +17,7 @@ function Log() {
     })
 
     const updateInputAttribute = (event) => {
+        console.log(event.target.name);
         setLogState({
             ...logState,
             [event.target.name]: event.target.value
@@ -87,22 +88,9 @@ function Log() {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="gender">
-                {/* <Form.Check onChange={updateInputAttribute}
-                    type="radio"
-                    id="gender"
-                    name="gender"
-                    label="Male"
-                    value="Male"
-                />
-                <Form.Check onChange={updateInputAttribute}
-                    type="radio"
-                    id="gender"
-                    name="gender"
-                    label="Female"
-                    value="Female"
-                /> */}
+  
                     <FloatingLabel controlId="floatingSelect" label="Select your gender">
-                        <Form.Select aria-label="Floating label select example">
+                        <Form.Select name="gender" aria-label="Floating label select example" onChange={updateInputAttribute}>
                             <option value="Other">...</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>

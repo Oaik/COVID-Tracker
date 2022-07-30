@@ -14,26 +14,31 @@ const Navbar = () => {
             <NavbarBootstrap.Brand>
                 <Link to="/" className="navbar-brand">Covid Tracker</Link>
             </NavbarBootstrap.Brand>
+
             <NavbarBootstrap.Toggle aria-controls="basic-navbar-nav" />
+
             <NavbarBootstrap.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-                    <Link to="/" className="nav-link">Home</Link>
                     <Link to="/dashboard" className="nav-link"> Dashboard</Link>
-                    {authState.status ? 
+                    
+                    {authState.status && 
                         <>
-                        <Link to="/log" className="nav-link">Log</Link>
-                        <Link to="/profile" className="nav-link">Profile</Link>
-                        <Link to="/logout" className="nav-link">Logout</Link>
-                        </>
-                        :
-                        <>
-                        <Link to="/login" className="nav-link">Login</Link>
-                        <Link to="/register" className="nav-link">Register</Link>
+                            <Link to="/profile" className="nav-link">Profile</Link>
+                            <Link to="/log" className="nav-link">Log</Link>
                         </>
                     }
                 </Nav>
                 <Nav>
-                    <Link to="/deets" className="nav-link">More deets</Link>
+                    {authState.status ?
+                        <>
+                            <Link to="/logout" className="nav-link">Logout</Link>
+                        </>
+                        :
+                        <>
+                            <Link to="/login" className="nav-link">Login</Link>
+                            <Link to="/register" className="nav-link">Register</Link>
+                        </>
+                    }
                 </Nav>
             </NavbarBootstrap.Collapse>
         </Container>
