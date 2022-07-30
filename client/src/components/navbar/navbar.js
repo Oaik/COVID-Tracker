@@ -9,7 +9,7 @@ const Navbar = () => {
     const { authState } = useContext(AuthContext);
 
     return (
-        <NavbarBootstrap bg="dark" variant="dark" expand="lg">
+        <NavbarBootstrap expand="lg" className="shadow-lg bg-body rounded">
         <Container>
             <NavbarBootstrap.Brand>
                 <Link to="/" className="navbar-brand">React-Bootstrap</Link>

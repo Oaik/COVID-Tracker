@@ -57,6 +57,7 @@ function Login() {
         <div className='input-container'>
             <Container>
                 <Row className='pt-5'>
+
                     <Col md={{span: 4, offset: 2}} className='pt-5'>
                         <h3>
                             COVID Tracker
@@ -70,6 +71,7 @@ function Login() {
                         <h4 className='mb-4 text-welcome'>
                             Login into your account
                         </h4>
+
                         <Form>
                             <Form.Group className="mb-3" controlId="email">
                                 <FloatingLabel controlId="email" label="Email" className="mt-3">
@@ -85,7 +87,7 @@ function Login() {
                             <Row>
                                 <Col className="mt-4 mb-2">
                                     <div className='d-grid gap-2' >
-                                        <Button variant="primary" type="submit" size="lg" onClick={loginUser}>
+                                        <Button variant="dark" type="submit" size="lg" onClick={loginUser}>
                                             Log in
                                         </Button>
                                     </div>
@@ -94,7 +96,8 @@ function Login() {
 
 
                             <div className='text-center text-welcome'>
-                                Dont have an account? 
+                                <span>Dont have an account? </span>
+
                                 <Link to="/register" className='text-light'>
                                     Create
                                 </Link>

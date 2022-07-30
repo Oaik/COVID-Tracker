@@ -59,125 +59,7 @@ The API made in postman you can include the collection in your own postman <a hr
 
 Read postman docmentation collection for <a href="https://documenter.getpostman.com/view/1537357/UzXNSwq1">COVID-Tracker</a>
 
-#### registration/login:
-<ul>
-  <li>
-    Login
-    <ul>
-      <li> 
-        post request to: localhost:3000/api/login
-        <pre>
-        BODY
-        {
-            "email": "email@gmail.com",
-            "password": "asd123"
-        }
-        </pre>
-      </li>
-    </ul>
-  </li>
-    <li>
-    Register
-    <ul>
-      <li> 
-        post request to: localhost:3000/api/register
-        <pre>
-        BODY
-        {
-            "email": "email@gmail.com",
-            "name": "omar",
-            "password": "ENCRYPTasd123"
-        }
-        </pre>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-
-#### Profile:
-<ul>
-  <li>
-    Update Profile
-    <ul>
-      <li> 
-        PUT request to: http://localhost:8000/api/profile/:id
-        <code>
-        "Header with AUTHORIZATION: Bearer Token"
-        </code>
-        <br/>
-        <pre>
-          Body: {
-            "name": "New Name"
-          }
-        </pre>
-      </li>
-    </ul>
-  </li>
-  
-  <li>
-    get current profile
-    <ul>
-      <li> 
-        Get request to: http://localhost:8000/api/profile
-      </li>
-    </ul>
-  </li>
-  
-  <li>
-    Get user profile with id
-    <ul>
-      <li> 
-        Get request to: http://localhost:8000/api/profile/:id
-      </li>
-    </ul>
-  </li>
-</ul>
-
-#### Logs:
-<ul>
-  <li>
-    Create log
-    <ul>
-      <li> 
-        POST request to: http://localhost:8000/api/log
-        <code>
-        "Header with AUTHORIZATION: Bearer Token"
-        </code>
-        <br/>
-        <pre>
-          Body: {
-          "temperature": 38,
-          "latitude": 48.0232,
-          "longitude": 48.0232,
-          "age": 22,
-          "gender": true,
-          "isVaccinated": true,
-          "timestamp": "2023-04-23T18:25:43.511Z"
-          }
-        </pre>
-      </li>
-    </ul>
-  </li>
-  
-  <li>
-    get log
-    <ul>
-      <li> 
-        Get request to: http://localhost:8000/api/logs
-      </li>
-    </ul>
-  </li>
-  
-  <li>
-    get log in country
-    <ul>
-      <li> 
-        Get request to: http://localhost:8000/api/logs?country=COUNTRYNAME
-      </li>
-    </ul>
-  </li>
-</ul>
+You can find more detials in <a href="./server">README</a> of the server folder
 
 ## Front-End
 We will have 6 pages:
@@ -189,10 +71,25 @@ We will have 6 pages:
 - Dashboard page
 
 
+After I integrataed Bootstrap into the front-end app I started to make the UI bettter
+
 ## UI-UX
+For each page I started to find inspiration to create it
+
+- Login page: I made something like facebook login page
+
+- Register page: I was thinking about a smart way to display the terms and policy that the user should accept in order to sign up so I decided to make the register form on the left and the some info with the terms on the right 
+
+- profile page: inspired somehow with github profile page so you can see the basic info of your profile on the left and majority of the screen will show the logs
+
+- create log page:
+
+- Dashboard: 
+
 I have collected images for the project from unsplash the images this is the list of images I have collected
 - https://unsplash.com/photos/Q1p7bh3SHj8
 - https://unsplash.com/photos/Besxfn2Z8fo
+- https://unsplash.com/photos/Oz_J_FXKvIs
 - https://unsplash.com/photos/gOuKQTLs2lc
 - https://unsplash.com/photos/QAAMEm1fyIQ
 - https://unsplash.com/photos/-p-KCm6xB9I
