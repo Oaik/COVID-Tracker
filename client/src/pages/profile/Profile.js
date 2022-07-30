@@ -2,18 +2,25 @@ import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom"
 import axios from "axios";
 
-import { Form, Button, FloatingLabel } from 'react-bootstrap';
+import { Form, Button, FloatingLabel, Container, Row, Col, Link } from 'react-bootstrap';
 
 import AuthContext from '../../contexts/authContext';
+import LogsContainer from "../../components/LogsContainer/LogsContainer";
 
 function Profile() {
     const navigate = useNavigate()
 
     const { authState, setAuthState } = useContext(AuthContext);
 
+    const [userLogs, setUserLogs] = useState([]);
+    const [isUpdating, setIsUpdating] = useState(false);
     const [updatedUserState, setUpdatedUserState] = useState({
         name: ""
     })
+
+    const toogleUpdateForm = () => {
+        setIsUpdating(!isUpdating);
+    }
 
     const updateInputAttribute = (event) => {
         setUpdatedUserState({
@@ -40,6 +47,7 @@ function Profile() {
                 ...response.data.user,
                 status: true
             });
+            toogleUpdateForm();
         })
     }
 
@@ -58,24 +66,65 @@ function Profile() {
                 console.log("Tried to update another user page");
                 navigate('/');
             }
+
+            setUserLogs(response.data.logs);
         })
     })
 
     return (
         <div>
-            Hello, {authState.name}
 
-            <Form>
-                <Form.Group className="mb-3" controlId="email">
-                    <FloatingLabel controlId="name" label="name" className="mt-3">
-                        <Form.Control name='name' type="text" onChange={updateInputAttribute} />
-                    </FloatingLabel>
-                </Form.Group>
 
-                <Button variant="primary" type="submit" onClick={updateUser}>
-                    Login
-                </Button>
-            </Form>
+
+
+            <Container fluid>
+                <Row className=''>
+                    <Col xs={{span: 12}} md={{span: 4, offset: 1}} className="pt-5">
+                        
+                        <img src="https://i.pravatar.cc/150?img=60" className="rounded-circle mb-3"/>
+                        {!isUpdating ? 
+                        (
+                            <div>
+                                <h3 className="mb-3">
+                                    Hello, {authState.name}
+                                </h3>
+
+                            <Button variant="dark" type="submit" onClick={toogleUpdateForm}>
+                                update Profile
+                            </Button>
+                            </div>
+
+                        ) 
+                        : 
+                        (
+                        <Form className='pt-5 me-5'>
+                            <Form.Group className="mb-3" controlId="name">
+                                <FloatingLabel controlId="name" label="name" className="mt-3">
+                                    <Form.Control name='name' type="text" onChange={updateInputAttribute} />
+                                </FloatingLabel>
+                            </Form.Group>
+
+                            <Button variant="primary" type="submit" onClick={updateUser}>
+                                update user
+                            </Button>
+                        </Form>
+                        )
+                        }
+
+
+                    </Col>
+
+                    <Col md={{span: 7}} className='pt-5'>
+                        <h5>
+                            Show all logs
+                        </h5>
+
+                        <LogsContainer logs={userLogs} />
+                    </Col>
+
+
+                </Row>
+            </Container>
         </div>
 
         

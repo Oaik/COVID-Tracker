@@ -9,7 +9,7 @@ const Navbar = () => {
     const { authState } = useContext(AuthContext);
 
     return (
-        <NavbarBootstrap expand="lg" className="shadow-lg bg-body rounded">
+        <NavbarBootstrap expand="lg" className="shadow-lg bg-body rounded border-bottom">
         <Container>
             <NavbarBootstrap.Brand>
                 <Link to="/" className="navbar-brand">Covid Tracker</Link>
