@@ -17,9 +17,14 @@ function Profile() {
     const [updatedUserState, setUpdatedUserState] = useState({
         name: ""
     })
+    const [showLogs, setShowLogs] = useState(false);
 
     const toogleUpdateForm = () => {
         setIsUpdating(!isUpdating);
+    }
+
+    const toogleLogs = () => {
+        setShowLogs(!showLogs);
     }
 
     const updateInputAttribute = (event) => {
@@ -119,7 +124,11 @@ function Profile() {
                             You have created {userLogs.length} logs
                         </h5>
                         
-                        <LogsContainer logs={userLogs} />
+                        <Button variant={showLogs ? "dark" : "primary"} type="submit" onClick={toogleLogs} className="my-3">
+                            {showLogs ? "hide" : "Show"} logs
+                        </Button>
+
+                        {showLogs && <LogsContainer logs={userLogs} /> }
                     </Col>
 
 
