@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom"
 import axios from 'axios';
 
-import { Form, Button, FloatingLabel } from 'react-bootstrap';
+import { Form, Button, FloatingLabel, Container, Row, Col } from 'react-bootstrap';
 
 function Log() {
     const navigate = useNavigate()
@@ -65,43 +65,54 @@ function Log() {
     }
 
     return (
-        <Form>
-            <Form.Group className="mb-3" controlId="email">
-                <FloatingLabel controlId="temperature" label="temperature" className="mt-3">
-                    <Form.Control name='temperature' type="number" placeholder="Enter temperature" onChange={updateInputAttribute} />
-                </FloatingLabel>
-            </Form.Group>
+        <div className='log-page'>
+            <Container>
+                <Row className='my-5'>
+                    <h3 className='text-center mb-3'>Create Log</h3>
+                    <Col sm={12} md={{span: 6, offset: 3}}>
+                        <Form>
+                            <Form.Group className="mb-3" controlId="email">
+                                <FloatingLabel controlId="temperature" label="temperature" className="mt-3">
+                                    <Form.Control name='temperature' type="number" placeholder="Enter temperature" onChange={updateInputAttribute} />
+                                </FloatingLabel>
+                            </Form.Group>
 
-            <Form.Group className="mb-3" controlId="name">
-                <FloatingLabel controlId="age" label="age" className="mt-3">
-                    <Form.Control name='age' type="number" placeholder="Enter age" onChange={updateInputAttribute} />
-                </FloatingLabel>
-            </Form.Group>
+                            <Form.Group className="mb-3" controlId="name">
+                                <FloatingLabel controlId="age" label="age" className="mt-3">
+                                    <Form.Control name='age' type="number" placeholder="Enter age" onChange={updateInputAttribute} />
+                                </FloatingLabel>
+                            </Form.Group>
 
-            <Form.Group className="mb-3" controlId="isVaccinated">
-                <Form.Check onChange={changeCheckboxInput}
-                    type="switch"
-                    id="isVaccinated"
-                    name="isVaccinated"
-                    label="Are you Vaccinated"
-                />
-            </Form.Group>
+                            <Form.Group className="mb-3" controlId="gender">
+                
+                                    <FloatingLabel controlId="floatingSelect" label="Select your gender">
+                                        <Form.Select name="gender" aria-label="Floating label select example" onChange={updateInputAttribute}>
+                                            <option disabled selected value="Other"></option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                        </Form.Select>
+                                    </FloatingLabel>
+                            </Form.Group>
 
-            <Form.Group className="mb-3" controlId="gender">
-  
-                    <FloatingLabel controlId="floatingSelect" label="Select your gender">
-                        <Form.Select name="gender" aria-label="Floating label select example" onChange={updateInputAttribute}>
-                            <option value="Other">...</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                        </Form.Select>
-                    </FloatingLabel>
-            </Form.Group>
+                            <Form.Group className="mb-3" controlId="isVaccinated">
+                                <Form.Check onChange={changeCheckboxInput}
+                                    type="switch"
+                                    id="isVaccinated"
+                                    name="isVaccinated"
+                                    label="Are you Vaccinated"
+                                />
+                            </Form.Group>
 
-            <Button variant="primary" type="submit" onClick={createLog}>
-                Create new log
-            </Button>
-        </Form>
+                            <Button variant="primary" type="submit" onClick={createLog}>
+                                Create new log
+                            </Button>
+                        </Form>
+                    </Col>
+                </Row>
+                
+            </Container>
+        </div>
+        
     )
 }
 

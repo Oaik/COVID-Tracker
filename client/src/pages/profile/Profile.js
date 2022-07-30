@@ -1,8 +1,8 @@
 import { useEffect, useState, useContext } from "react";
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import axios from "axios";
 
-import { Form, Button, FloatingLabel, Container, Row, Col, Link } from 'react-bootstrap';
+import { Form, Button, FloatingLabel, Container, Row, Col } from 'react-bootstrap';
 
 import AuthContext from '../../contexts/authContext';
 import LogsContainer from "../../components/LogsContainer/LogsContainer";
@@ -129,6 +129,13 @@ function Profile() {
                         </Button>
 
                         {showLogs && <LogsContainer logs={userLogs} /> }
+
+                        <br />
+                        
+                        <Link to="/log" className="text-muted">
+                           Create new log?
+                           
+                        </Link>
                     </Col>
 
 
