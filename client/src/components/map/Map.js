@@ -14,8 +14,12 @@ function Map(props) {
                 return (
                     <Marker key={index} position={[statistic.latitude, statistic.longitude]}>
                         <Popup>
-                            <h2><img alt="country flag" src={"https://disease.sh/assets/img/flags/" + statistic.countryCode.toLowerCase() + ".png"} height="20px" width="25px"/> {statistic.countryName}</h2>
-                             <strong>length:</strong> {statistic.length}<br/>
+                            <h2>
+                                <img alt="country flag" src={"https://disease.sh/assets/img/flags/" + statistic.countryCode.toLowerCase() + ".png"} height="20px" width="25px"/>
+                                {statistic.countryName}
+                            </h2>
+
+                            <strong>length:</strong> {statistic.length}<br/>
                         </Popup>
                     </Marker>
                 )

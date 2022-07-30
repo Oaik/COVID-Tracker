@@ -12,7 +12,7 @@ const Navbar = () => {
         <NavbarBootstrap expand="lg" className="shadow-lg bg-body rounded">
         <Container>
             <NavbarBootstrap.Brand>
-                <Link to="/" className="navbar-brand">React-Bootstrap</Link>
+                <Link to="/" className="navbar-brand">Covid Tracker</Link>
             </NavbarBootstrap.Brand>
             <NavbarBootstrap.Toggle aria-controls="basic-navbar-nav" />
             <NavbarBootstrap.Collapse id="basic-navbar-nav">
