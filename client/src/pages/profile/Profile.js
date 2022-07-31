@@ -56,7 +56,7 @@ function Profile() {
                 ...response.data.user,
                 status: true
             });
-
+            
             toogleUpdateForm();
         }).catch((error) => {
             actions.setSubmitting(false);

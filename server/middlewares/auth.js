@@ -5,7 +5,7 @@ const config = require('../config.json');
 const validateToken = async (req, res, next) => {
     const accessToken = req.headers.accesstoken;
     if(!accessToken) {
-        return res.json({error: error, errorMessage: "Unauthorized to visit this page please login first"});
+        return res.json({error: "Unauthorized to visit this page please login first", errorMessage: error});
     }
 
     try {
@@ -14,9 +14,7 @@ const validateToken = async (req, res, next) => {
         req.user = decodedData;
         next();
     } catch(error) {
-        console.log("Error while decoding the token", error);
-
-        return res.json({error: error, errorMessage: "Error while decoding the token"});
+        return res.json({error: "Error while decoding the token", errorMessage: error});
     }
 }
 

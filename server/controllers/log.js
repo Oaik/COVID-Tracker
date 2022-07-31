@@ -5,50 +5,56 @@ const Log = require('../models/Log');
 const showLogs = async (req, res) => {
     const country = req.query.country;
     if(country) {
-        const logs = await showLogsInCountry(country)
-        return res.json(logs);
+        return Log
+            .find({country: country})
+            .then(logs => res.json(logs))
+            .catch(error => res.json({error: `Could not fetch data with country ${country}`, errorMessage: error}))
     }
     
-    Log.find({}).then((data) => res.json(data));
-}
-
-const showLogsInCountry = async (country) => {
-    return Log.find({country: country});
+    return Log
+        .find({})
+        .then((data) => res.json(data))
+        .catch((error) => res.json({error: "Error in showLogs while fetching all logs", errorMessage: error}));
 }
 
 const createLog = async (req, res) => {
-    console.log(req.body.latitude, req.body.longitude)
-    const countryList = await findCountry(req.body.latitude, req.body.longitude).catch((error) => {
-        console.log("error while finding the country");
+    let { latitude, longitude} = req.body;
 
-        return res.json({error});
-    });
-    
-    const newLog = new Log({
-        ...req.body,
-        user_id: req.user.id,
-        ...countryList
-    })
+    return axios
+        .get(`http://api.geonames.org/countryCodeJSON?lat=${latitude}&lng=${longitude}&username=oaik`)
+        .then((response) => {
+            // the api could not find the country with this (latitude and longitude) so it will return status object with error message
+            if(response.data.status) {
+                return res.json({error: response.data.status.message});
+            }
 
-    console.log(newLog);
-    
-    newLog.save().catch((error) => {
-        console.log("Error while saving the log", error);
+            const countryList = {
+                countryName: response.data.countryName,
+                countryCode: response.data.countryCode
+            }
 
-        return res.json({error: error});
-    })
+            console.log(response.data);
 
-    return res.json("Log saved");
-}
+            const newLog = new Log({
+                ...req.body,
+                user_id: req.user.id,
+                ...countryList
+            })
 
-const findCountry = async (latitude, longitude) => {
-    const res = await axios.get(`http://api.geonames.org/countryCodeJSON?lat=${latitude}&lng=${longitude}&username=oaik`);
+            console.log(newLog);
 
-    return {countryName: res.data.countryName, countryCode: res.data.countryCode};
+            return newLog
+                .save()
+                .then(() => res.json({}))
+                .catch((error) => res.json({error: "Error while saving the new log", errorMessage: error}));
+            
+        })
+        .catch((error) => {
+            return res.json({error: "error in the genoname api while finding the country", errorMessage: error});
+        })
 }
 
 module.exports = {
     showLogs,
-    showLogsInCountry,
     createLog
 }

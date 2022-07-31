@@ -6,7 +6,7 @@ const cors = require("cors");
 // config
 const config = require("./config.json");
 
-// importing routes
+// routes
 const authRoute = require('./routes/auth');
 const userRoute = require('./routes/user');
 const logRoute = require('./routes/log');

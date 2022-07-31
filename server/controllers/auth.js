@@ -23,23 +23,22 @@ const register = (req, res) => {
 
         newUser.save((error) => {
             if(error) {
-                console.log("error while register", error);
-                return res.send("Error while creating user");
+                return res.json({error: "Error while creating user in register the email is already registered", errorMessage: error});
             }
 
-            return res.send("User created");        
+            return res.json({});        
         });
     }).catch( (error) => {
         console.error("Error while hashing the passwored", error);
 
-        return res.send("Error while hashing the password of the user");
+        return res.json({error: "Error while hashing the password of the user", errorMessage: error});
     });
 }
 
 const login = (req, res) => {
     User.findOne({email: req.body.email}).then((user) => {
         if(!user) {
-            return res.send("Email does not exists");
+            return res.json({error: "Email does not exists"});
         }
 
         bcrypt.compare(req.body.password, user.password).then((isMatch) => {
@@ -47,32 +46,39 @@ const login = (req, res) => {
                 return res.send("password does not match");
             }
 
-            const token = jwt.sign({
+            jwt.sign(
+                {
                 "id": user._id,
                 "name": user.name,
-                "email": user.email}, config.secretKey);
+                "email": user.email
+                }, 
+                config.secretKey,
+                (error, token) => {
+                    if(error) {
+                        return res.json({error: "Error while signing the jwt in login", errorMessage: error});
+                    }
+                    
+                    return res.json({
+                        accessToken: token,
+                        id: user._id,
+                        name: user.name
+                    });
+                } 
+            );
 
-            return res.json({
-                accessToken: token,
-                id: user._id,
-                name: user.name
-            });
+
         }).catch( (error) => {
-            console.error("Error while comparing the passwored", error);
-
-            return res.send("Error while comparing the password of the user");
+            return res.json({error: "Error while comparing the password of the user", errorMessage: error});
         });
         
     }).catch((error) => {
-        console.error("Error while finding the user", error);
-
-        return res.send("Login Falied while finding user");
+        return res.json({error: "Login Falied while finding user", errorMessage: error});
     })
 }
 
 const logout = (req, res) => {
     req.user = null;
-    res.send("Logout success");
+    res.json({});
 }
 
 module.exports = {
