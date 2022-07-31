@@ -21,7 +21,7 @@ function Dashboard() {
     }
 
     useEffect(() => {
-        axios.get("http://localhost:8000/dashboard")
+        axios.get("https://covid19trackeromarnodo.cyclic.app//dashboard")
             .then((response) => {
                 if(response.data.length == 0)
                     return

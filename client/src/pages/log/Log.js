@@ -39,7 +39,7 @@ function Log() {
 
     const handleOnSubmit = (values, actions) => {
         axios
-            .post("http://localhost:8000/api/log", 
+            .post("https://covid19trackeromarnodo.cyclic.app//api/log", 
                 {
                     ...values,
                     ...logPositionState

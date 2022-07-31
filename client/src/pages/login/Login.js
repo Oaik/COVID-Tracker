@@ -23,7 +23,7 @@ function Login() {
 
     const handleOnSubmit = (values, actions) => {
         axios
-            .post("http://localhost:8000/auth/login",
+            .post("https://covid19trackeromarnodo.cyclic.app/auth/login",
                 {
                 ...values
                 },

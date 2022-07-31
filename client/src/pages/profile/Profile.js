@@ -34,7 +34,7 @@ function Profile() {
     }
 
     const handleOnSubmit = (values, actions) => {
-        axios.put(`http://localhost:8000/user/profile/${authState.id}`, {
+        axios.put(`https://covid19trackeromarnodo.cyclic.app/user/profile/${authState.id}`, {
             ...authState,
             ...values
         }, {            
@@ -71,7 +71,7 @@ function Profile() {
             navigate('/');
         }
 
-        axios.post("http://localhost:8000/user/profile/", {}, {            
+        axios.post("https://covid19trackeromarnodo.cyclic.app/user/profile/", {}, {            
             headers: {
                 'Content-Type': 'application/json',
                 'accessToken': localStorage.getItem("accessToken")

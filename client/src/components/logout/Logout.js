@@ -10,7 +10,7 @@ const Logout = () => {
     const { setAuthState } = useContext(AuthContext);
 
     useEffect(() => {
-        axios.post("http://localhost:8000/auth/logout").then(() => {
+        axios.post("https://covid19trackeromarnodo.cyclic.app/auth/logout").then(() => {
             localStorage.removeItem("accessToken");
             setAuthState({ username: "", id: 0, status: false });
 
