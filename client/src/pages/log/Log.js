@@ -83,11 +83,10 @@ function Log() {
                                 </FloatingLabel>
                             </Form.Group>
 
-                            <Form.Group className="mb-3" controlId="gender">
-                
+                            <Form.Group className="mb-3" controlId="gender">                
                                     <FloatingLabel controlId="floatingSelect" label="Select your gender">
-                                        <Form.Select name="gender" aria-label="Floating label select example" onChange={updateInputAttribute}>
-                                            <option disabled selected value="Other"></option>
+                                        <Form.Select name="gender" defaultValue="Other" aria-label="Floating label select example" onChange={updateInputAttribute}>
+                                            <option disabled value="Other"></option>
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>
                                         </Form.Select>

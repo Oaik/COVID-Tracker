@@ -127,9 +127,13 @@ function Profile() {
                             You have created {userLogs.length} logs
                         </h5>
                         
-                        <Button variant={showLogs ? "dark" : "primary"} type="submit" onClick={toogleLogs} className="my-3">
-                            {showLogs ? "hide" : "Show"} logs
-                        </Button>
+                        {
+                            userLogs.length > 0
+                            && 
+                            <Button variant={showLogs ? "dark" : "primary"} type="submit" onClick={toogleLogs} className="my-3">
+                                {showLogs ? "hide" : "Show"} logs
+                            </Button>
+                        }
 
                         {showLogs && <LogsContainer logs={userLogs} /> }
 

@@ -2,53 +2,61 @@ import { useState, useContext, useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom"
 import axios from 'axios';
 
-import { Form, Button, FloatingLabel, Container, Row, Col } from 'react-bootstrap';
+import { Button, FloatingLabel, Container, Row, Col, Alert } from 'react-bootstrap';
+
+
+import { Formik, Form, Field, ErrorMessage } from "formik";
 
 import AuthContext from '../../contexts/authContext';
 
 import "./login.css"
+
+import formLoginSchema from '../../Validations/login'
 
 function Login() {
     const navigate = useNavigate()
 
     const { authState, setAuthState } = useContext(AuthContext);
 
-    const [userState, setUserState] = useState({
-        email: "",
-        password: ""
-    })
+    const [serverState, setServerState] = useState();
+    const handleServerResponse = (ok, msg) => {
+      setServerState({ok, msg});
+    };
 
-    const updateInputAttribute = (event) => {
-        setUserState({
-            ...userState,
-            [event.target.name]: event.target.value
-        })
-    }
-
-    const loginUser = (event) => {
-        event.preventDefault();
-
+    const handleOnSubmit = (values, actions) => {
         axios.post("http://localhost:8000/auth/login", {
-            ...userState
+            ...values
         }, {            
             headers: {
                 'Content-Type': 'application/json'
             }
         }).then((response) => {
+            console.log(response.data);
             if(response.data.accessToken) {
-                localStorage.setItem("accessToken", response.data.accessToken);
+                actions.setSubmitting(false);
+                actions.resetForm();
+                handleServerResponse(true, "Thanks!");
 
-                console.log("inside login", response.data);
+                localStorage.setItem("accessToken", response.data.accessToken);
+    
                 setAuthState({
                     name: response.data.name,
                     id: response.data.id,
                     status: true,
                 });
-
+    
                 navigate('/dashboard');
+            } else {
+                actions.setSubmitting(false);
+                handleServerResponse(false, "wrong email and password");
+                console.log("No token");
             }
 
+            
+
         }).catch((error) => {
+            actions.setSubmitting(false);
+            handleServerResponse(false, error.response.data.error);
             console.log("Error while logging", error);
         })
     }
@@ -79,37 +87,56 @@ function Login() {
                             Login into your account
                         </h4>
 
-                        <Form>
-                            <Form.Group className="mb-3" controlId="email">
+
+                        <Formik
+                            initialValues={{ email: "", password: "" }}
+                            onSubmit={handleOnSubmit}
+                            validationSchema={formLoginSchema}
+                        >
+                            {({ isSubmitting }) => (
+                            <Form noValidate>
                                 <FloatingLabel controlId="email" label="Email" className="mt-3">
-                                    <Form.Control name='email' type="email" placeholder="Enter email" onChange={updateInputAttribute} />
-                                </FloatingLabel>
-                            </Form.Group>
+                                    <Field id="email" type="email" name="email" className="form-control" />
+                                </FloatingLabel>                                
+                                <ErrorMessage name="email" className="errorMsg text-danger" component="p" />
 
-                            <Form.Group className="mb-3" controlId="password">
+                                
                                 <FloatingLabel controlId="password" label="Password" className="mt-3">
-                                    <Form.Control name='password' type="password" placeholder="Enter password" onChange={updateInputAttribute} />
+                                    <Field id="password" name="password" type="password" className="form-control" />
                                 </FloatingLabel>
-                            </Form.Group>
-                            <Row>
-                                <Col className="mt-4 mb-2">
-                                    <div className='d-grid gap-2' >
-                                        <Button variant="dark" type="submit" size="lg" onClick={loginUser}>
-                                            Log in
-                                        </Button>
-                                    </div>
-                                </Col>
-                            </Row>
 
+                                <ErrorMessage name="password" className="errorMsg text-danger" component="p" />
 
-                            <div className='text-center text-welcome'>
-                                <span>Dont have an account? </span>
+                                <Row className="mt-4 mb-2">
+                                    <Col >
+                                        <div className='d-grid gap-2' >
+                                            <Button variant="dark" type="submit" disabled={isSubmitting} size="lg">
+                                                Log in
+                                            </Button>
+                                        </div>
+                                    </Col>
+                                </Row>
 
-                                <Link to="/register" className='text-light'>
-                                    Create
-                                </Link>
-                            </div>
-                        </Form>
+                                {serverState && (
+                                <div className={!serverState.ok ? "errorMsg" : ""}>
+                                    <Alert key="danger" variant="danger" >
+                                        {serverState.msg}
+                                    </Alert>
+                                    
+                                </div>
+                                )}
+
+                                <div className='text-center text-welcome'>
+                                    <span>Dont have an account? </span>
+
+                                    <Link to="/register" className='text-light'>
+                                        Create
+                                    </Link>
+                                </div>
+                            </Form>
+                            )}
+                        </Formik>
+
                     </Col>
 
 
