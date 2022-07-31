@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
     };
   
     useEffect(() => {
-      axios.get("https://covid19trackeromarnodo.cyclic.app/auth/auth", {
+      axios.get("http://localhost:8000/auth/auth", {
         headers: {
           accessToken: localStorage.getItem("accessToken"),
         }

@@ -25,7 +25,7 @@ function Register() {
     const handleOnSubmit = (values, actions) => {
 
         axios
-            .post("https://covid19trackeromarnodo.cyclic.app/auth/register",
+            .post("http://localhost:8000/auth/register",
                 {
                     ...values
                 }, 
