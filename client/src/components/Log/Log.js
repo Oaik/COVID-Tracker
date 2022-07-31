@@ -3,7 +3,7 @@
 function Log(props) {
     return(
         <tr>
-            <td>{props.index}</td>
+            <td>{props.index + 1}</td>
             <td>{props.log.temperature}</td>
             <td>{props.log.countryName}</td>
             <td>{props.log.age}</td>

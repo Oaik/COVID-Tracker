@@ -36,7 +36,6 @@ function Login() {
             .then((response) => {
                 if(response.data.error) {
                     actions.setSubmitting(false);
-
                     handleServerResponse(false, response.data.error);
                     return;
                 }

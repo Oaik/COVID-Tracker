@@ -11,7 +11,10 @@ function Dashboard() {
 
     const [countryToDisplayLogs, setCountryToDisplayLogs] = useState(-1);
     const [statistics, setStatistics] = useState([]);
-    const [dashboardInfo, setDashboardInfo] = useState({});
+    const [dashboardInfo, setDashboardInfo] = useState({
+        diffrentCountries: 0,
+        totalPatients: 0
+    });
 
     const updateCountry = (event) => {
         setCountryToDisplayLogs(event.target.value);
@@ -20,6 +23,9 @@ function Dashboard() {
     useEffect(() => {
         axios.get("http://localhost:8000/dashboard")
             .then((response) => {
+                if(response.data.length == 0)
+                    return
+                    
                 setStatistics(response.data);
                 setDashboardInfo({
                     diffrentCountries: response.data.length,
@@ -134,7 +140,7 @@ function Dashboard() {
 
             <Container className="mb-5">
                 {
-                    countryToDisplayLogs > 0 && statistics.length > countryToDisplayLogs &&
+                    countryToDisplayLogs >= 0 && statistics.length > countryToDisplayLogs &&
                     <>
                         <h3>
                             All Logs In 

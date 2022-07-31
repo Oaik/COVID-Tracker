@@ -33,15 +33,11 @@ const createLog = async (req, res) => {
                 countryCode: response.data.countryCode
             }
 
-            console.log(response.data);
-
             const newLog = new Log({
                 ...req.body,
                 user_id: req.user.id,
                 ...countryList
             })
-
-            console.log(newLog);
 
             return newLog
                 .save()
