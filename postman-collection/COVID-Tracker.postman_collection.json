@@ -34,7 +34,100 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Register New User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"omar123@gmail.com\",\r\n    \"name\": \"omar\",\r\n    \"password\": \"123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/auth/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{}"
+						},
+						{
+							"name": "Register Duplicate User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"omar123@gmail.com\",\r\n    \"name\": \"omar\",\r\n    \"password\": \"123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APIHost}}/auth/register",
+									"host": [
+										"{{APIHost}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"error\": \"Error while creating user in register the email is already registered\",\r\n    \"errorMessage\": {\r\n        \"index\": 0,\r\n        \"code\": 11000,\r\n        \"keyPattern\": {\r\n            \"email\": 1\r\n        },\r\n        \"keyValue\": {\r\n            \"email\": \"omar123@gmail.com\"\r\n        }\r\n    }\r\n}"
+						},
+						{
+							"name": "Register with wrong email format",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"Wrongemailformat\",\r\n    \"name\": \"name\",\r\n    \"password\": \"password\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APIHost}}/auth/register",
+									"host": [
+										"{{APIHost}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"error\": \"Error while creating user user validation failed: email: Please fill a valid email address\",\n    \"errorMessage\": {\n        \"errors\": {\n            \"email\": {\n                \"name\": \"ValidatorError\",\n                \"message\": \"Please fill a valid email address\",\n                \"properties\": {\n                    \"message\": \"Please fill a valid email address\",\n                    \"type\": \"user defined\",\n                    \"path\": \"email\",\n                    \"value\": \"fecom\"\n                },\n                \"kind\": \"user defined\",\n                \"path\": \"email\",\n                \"value\": \"fecom\"\n            }\n        },\n        \"_message\": \"user validation failed\",\n        \"name\": \"ValidationError\",\n        \"message\": \"user validation failed: email: Please fill a valid email address\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "login",
@@ -70,7 +163,118 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "login with valid user",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"omar123@gmail.com\",\r\n    \"password\": \"123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"accessToken\": \"thetoken\",\n    \"id\": \"62e0af9724d8c56446f413f2\",\n    \"name\": \"Omar\"\n}"
+						},
+						{
+							"name": "login with wrong email",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"fefeomar123@gmail.com\",\r\n    \"password\": \"123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APIHost}}/auth/login",
+									"host": [
+										"{{APIHost}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"error\": \"Email does not exists\"\n}"
+						},
+						{
+							"name": "login with wrong password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"omar123@gmail.com\",\r\n    \"password\": \"wrongpassword\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APIHost}}/auth/login",
+									"host": [
+										"{{APIHost}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"error\": \"Wrong password\"\n}"
+						}
+					]
 				},
 				{
 					"name": "verfiyToken",
@@ -109,7 +313,124 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "verfiyToken with rightoken",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "accessToken",
+										"value": "Righttoken",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"omar123@gmail.com\",\r\n    \"password\": \"123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/auth/auth",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"auth",
+										"auth"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"id\": \"62e0af9724d8c56446f413f2\",\n    \"name\": \"omar\",\n    \"email\": \"omar123@gmail.com\",\n    \"iat\": 1658893093\n}"
+						},
+						{
+							"name": "verfiyToken with wrongtoken",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "accessToken",
+										"value": "Wrongtoken",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"omar123@gmail.com\",\r\n    \"password\": \"123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APIHost}}/auth/auth",
+									"host": [
+										"{{APIHost}}"
+									],
+									"path": [
+										"auth",
+										"auth"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"error\": \"Wrong token has been passed not authorized to continue\",\n    \"errorMessage\": {\n        \"name\": \"JsonWebTokenError\",\n        \"message\": \"invalid token\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Logout User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{APIHost}}/auth/logout",
+							"host": [
+								"{{APIHost}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Logout User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/user/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"user",
+										"logout"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{}"
+						}
+					]
 				}
 			]
 		},
@@ -157,7 +478,137 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Change profile info with correct token and id",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "accessToken",
+										"value": "righttoken",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Omar\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APIHost}}/user/profile/:id",
+									"host": [
+										"{{APIHost}}"
+									],
+									"path": [
+										"user",
+										"profile",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "62e0af9724d8c56446f413f2"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"accessToken\": \"token\",\r\n    \"user\": {\r\n        \"id\": \"62e0af9724d8c56446f413f2\",\r\n        \"name\": \"newname\",\r\n        \"email\": \"omar123@gmail.com\"\r\n    }\r\n}"
+						},
+						{
+							"name": "Change profile info with other's user token",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "accessToken",
+										"value": "wrongtoken",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Omar\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APIHost}}/user/profile/:id",
+									"host": [
+										"{{APIHost}}"
+									],
+									"path": [
+										"user",
+										"profile",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "62e0af9724d8c56446f413f2"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"error\": \"Wrong token has been passed not authorized to continue\",\n    \"errorMessage\": {\n        \"name\": \"JsonWebTokenError\",\n        \"message\": \"invalid token\"\n    }\n}"
+						},
+						{
+							"name": "Change profile info of other user (wrong id)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "accessToken",
+										"value": "righttoken",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Omar\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APIHost}}/user/profile/:id",
+									"host": [
+										"{{APIHost}}"
+									],
+									"path": [
+										"user",
+										"profile",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "62e0af9724d8c56446f413f2"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"error\": \"Unauthorized to update the profile\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Get current user profile",
@@ -181,7 +632,62 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get current user profile",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accessToken",
+										"value": "righttoken",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{APIHost}}/user/profile",
+									"host": [
+										"{{APIHost}}"
+									],
+									"path": [
+										"user",
+										"profile"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"id\": \"62e0af9724d8c56446f413f2\",\n    \"name\": \"omar\",\n    \"email\": \"omar123@gmail.com\",\n    \"iat\": 1658893093,\n    \"logs\": [\n        {\n            \"_id\": \"62e1c70c6fb734d1c5445351\",\n            \"user_id\": \"62e0af9724d8c56446f413f2\",\n            \"temperature\": 38,\n            \"latitude\": 51.507351,\n            \"longitude\": -0.127758,\n            \"countryName\": \"United Kingdom\",\n            \"countryCode\": \"GB\",\n            \"age\": 22,\n            \"gender\": \"true\",\n            \"isVaccinated\": true,\n            \"createdAt\": \"2022-07-27T23:15:24.277Z\",\n            \"updatedAt\": \"2022-07-27T23:15:24.277Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "Get current user profile with wrong token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accessToken",
+										"value": "wrongtoken",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{APIHost}}/user/profile",
+									"host": [
+										"{{APIHost}}"
+									],
+									"path": [
+										"user",
+										"profile"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"error\": \"Wrong token has been passed not authorized to continue\",\n    \"errorMessage\": {\n        \"name\": \"JsonWebTokenError\",\n        \"message\": \"invalid token\"\n    }\n}"
+						}
+					]
 				}
 			]
 		},
@@ -204,7 +710,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"temperature\": 38,\r\n    \"latitude\":  31.2672256,\r\n    \"longitude\": 30.0056576,\r\n    \"age\": 22,\r\n    \"gender\": true,\r\n    \"isVaccinated\": true\r\n}",
+							"raw": "{\r\n    \"temperature\": 38,\r\n    \"latitude\":  31.2672256,\r\n    \"longitude\": 30.0056576,\r\n    \"age\": 22,\r\n    \"gender\": \"Male\",\r\n    \"isVaccinated\": true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -222,7 +728,80 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Create log",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accessToken",
+										"value": "righttoken",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"temperature\": 38,\r\n    \"latitude\":  31.2672256,\r\n    \"longitude\": 30.0056576,\r\n    \"age\": 22,\r\n    \"gender\": \"Male\",\r\n    \"isVaccinated\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APIHost}}/api/log",
+									"host": [
+										"{{APIHost}}"
+									],
+									"path": [
+										"api",
+										"log"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{}"
+						},
+						{
+							"name": "Create log with wrong token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accessToken",
+										"value": "wrongtoken",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"temperature\": 38,\r\n    \"latitude\":  31.2672256,\r\n    \"longitude\": 30.0056576,\r\n    \"age\": 22,\r\n    \"gender\": \"Male\",\r\n    \"isVaccinated\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APIHost}}/api/log",
+									"host": [
+										"{{APIHost}}"
+									],
+									"path": [
+										"api",
+										"log"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"error\": \"Wrong token has been passed not authorized to continue\",\n    \"errorMessage\": {\n        \"name\": \"JsonWebTokenError\",\n        \"message\": \"invalid token\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Get all logs",
@@ -243,7 +822,31 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get all logs",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/logs",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"logs"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"62e1c70c6fb734d1c5445351\",\n        \"user_id\": \"62e0af9724d8c56446f413f2\",\n        \"temperature\": 38,\n        \"latitude\": 51.507351,\n        \"longitude\": -0.127758,\n        \"countryName\": \"United Kingdom\",\n        \"countryCode\": \"GB\",\n        \"age\": 22,\n        \"gender\": \"true\",\n        \"isVaccinated\": true,\n        \"createdAt\": \"2022-07-27T23:15:24.277Z\",\n        \"updatedAt\": \"2022-07-27T23:15:24.277Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"62e1fed7bab2cef5bfaed05b\",\n        \"user_id\": \"62e0af9724d8c56446f413f2\",\n        \"temperature\": 38,\n        \"latitude\": 30.797,\n        \"longitude\": 36.404901,\n        \"countryName\": \"Jordan\",\n        \"countryCode\": \"JO\",\n        \"age\": 22,\n        \"gender\": \"true\",\n        \"isVaccinated\": true,\n        \"createdAt\": \"2022-07-28T03:13:27.897Z\",\n        \"updatedAt\": \"2022-07-28T03:13:27.897Z\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
 				},
 				{
 					"name": "Get all country logs",
@@ -271,7 +874,36 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get all country logs",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{APIHost}}/api/logs/?country=Egypt",
+									"host": [
+										"{{APIHost}}"
+									],
+									"path": [
+										"api",
+										"logs",
+										""
+									],
+									"query": [
+										{
+											"key": "country",
+											"value": "Egypt"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "[\r\n        {\r\n        \"_id\": \"62e1c70c6fb734d1c5445351\",\r\n        \"user_id\": \"62e0af9724d8c56446f413f2\",\r\n        \"temperature\": 38,\r\n        \"latitude\": 30.797,\r\n        \"longitude\": 36.404901,\r\n        \"countryName\": \"Jordan\",\r\n        \"countryCode\": \"GB\",\r\n        \"age\": 22,\r\n        \"gender\": \"true\",\r\n        \"isVaccinated\": true,\r\n        \"createdAt\": \"2022-07-27T23:15:24.277Z\",\r\n        \"updatedAt\": \"2022-07-27T23:15:24.277Z\",\r\n        \"__v\": 0\r\n    },\r\n    {\r\n        \"_id\": \"62e1fed7bab2cef5bfaed05b\",\r\n        \"user_id\": \"62e0af9724d8c56446f413f2\",\r\n        \"temperature\": 38,\r\n        \"latitude\": 30.797,\r\n        \"longitude\": 36.404901,\r\n        \"countryName\": \"Jordan\",\r\n        \"countryCode\": \"JO\",\r\n        \"age\": 22,\r\n        \"gender\": \"true\",\r\n        \"isVaccinated\": true,\r\n        \"createdAt\": \"2022-07-28T03:13:27.897Z\",\r\n        \"updatedAt\": \"2022-07-28T03:13:27.897Z\",\r\n        \"__v\": 0\r\n    }\r\n]"
+						}
+					]
 				}
 			]
 		},
@@ -296,7 +928,28 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get dashboard",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{APIHost}}/dashboard",
+									"host": [
+										"{{APIHost}}"
+									],
+									"path": [
+										"dashboard"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "[\r\n    {\r\n        \"countryName\": \"Jordan\",\r\n        \"countryCode\": \"JO\",\r\n        \"latitude\": 30.797,\r\n        \"longitude\": 36.404901,\r\n        \"length\": 1,\r\n        \"data\": [\r\n            {\r\n                \"_id\": \"62e1fed7bab2cef5bfaed05b\",\r\n                \"user_id\": \"62e0af9724d8c56446f413f2\",\r\n                \"temperature\": 38,\r\n                \"latitude\": 30.797,\r\n                \"longitude\": 36.404901,\r\n                \"countryName\": \"Jordan\",\r\n                \"countryCode\": \"JO\",\r\n                \"age\": 22,\r\n                \"gender\": \"Male\",\r\n                \"isVaccinated\": true,\r\n                \"createdAt\": \"2022-07-28T03:13:27.897Z\",\r\n                \"updatedAt\": \"2022-07-28T03:13:27.897Z\",\r\n                \"__v\": 0\r\n            }\r\n        ]\r\n    },\r\n    {\r\n        \"countryName\": \"Egypt\",\r\n        \"countryCode\": \"EG\",\r\n        \"latitude\": 31.2672256,\r\n        \"longitude\": 30.0056576,\r\n        \"length\": 3,\r\n        \"data\": [\r\n            {\r\n                \"_id\": \"62e1ff1fbab2cef5bfaed05f\",\r\n                \"user_id\": \"62e0af9724d8c56446f413f2\",\r\n                \"temperature\": 38,\r\n                \"latitude\": 31.2672256,\r\n                \"longitude\": 30.0056576,\r\n                \"countryName\": \"Egypt\",\r\n                \"countryCode\": \"EG\",\r\n                \"age\": 22,\r\n                \"gender\": \"Male\",\r\n                \"isVaccinated\": true,\r\n                \"createdAt\": \"2022-07-28T03:14:39.850Z\",\r\n                \"updatedAt\": \"2022-07-28T03:14:39.850Z\",\r\n                \"__v\": 0\r\n            },\r\n            {\r\n                \"_id\": \"62e2006fc4d4028f0e5f52f3\",\r\n                \"user_id\": \"62e0af9724d8c56446f413f2\",\r\n                \"temperature\": 38,\r\n                \"latitude\": 31.2672256,\r\n                \"longitude\": 30.0056576,\r\n                \"countryName\": \"Egypt\",\r\n                \"countryCode\": \"EG\",\r\n                \"age\": 22,\r\n                \"gender\": \"Male\",\r\n                \"isVaccinated\": true,\r\n                \"createdAt\": \"2022-07-28T03:20:15.961Z\",\r\n                \"updatedAt\": \"2022-07-28T03:20:15.961Z\",\r\n                \"__v\": 0\r\n            },\r\n            {\r\n                \"_id\": \"62e2164ec4d4028f0e5f5308\",\r\n                \"user_id\": \"62e0af9724d8c56446f413f2\",\r\n                \"temperature\": 36,\r\n                \"latitude\": 31.2672256,\r\n                \"longitude\": 30.0056576,\r\n                \"countryName\": \"Egypt\",\r\n                \"countryCode\": \"EG\",\r\n                \"age\": 33,\r\n                \"gender\": \"Male\",\r\n                \"isVaccinated\": true,\r\n                \"createdAt\": \"2022-07-28T04:53:34.788Z\",\r\n                \"updatedAt\": \"2022-07-28T04:53:34.788Z\",\r\n                \"__v\": 0\r\n            }\r\n        ]\r\n    },\r\n    {\r\n        \"countryName\": \"Uganda\",\r\n        \"countryCode\": \"UG\",\r\n        \"latitude\": 0,\r\n        \"longitude\": 29.9162163,\r\n        \"length\": 2,\r\n        \"data\": [\r\n            {\r\n                \"_id\": \"62e357592b5dbc55aa900005\",\r\n                \"user_id\": \"62e0af9724d8c56446f413f2\",\r\n                \"temperature\": 31,\r\n                \"latitude\": 0,\r\n                \"longitude\": 29.9162163,\r\n                \"countryName\": \"Uganda\",\r\n                \"countryCode\": \"UG\",\r\n                \"age\": 43,\r\n                \"gender\": \"Male\",\r\n                \"isVaccinated\": false,\r\n                \"createdAt\": \"2022-07-29T03:43:21.909Z\",\r\n                \"updatedAt\": \"2022-07-29T03:43:21.909Z\",\r\n                \"__v\": 0\r\n            },\r\n            {\r\n                \"_id\": \"62e357762b5dbc55aa900f3c\",\r\n                \"user_id\": \"62e0af9724d8c56446f413f2\",\r\n                \"temperature\": 31,\r\n                \"latitude\": 0,\r\n                \"longitude\": 29.9162163,\r\n                \"countryName\": \"Uganda\",\r\n                \"countryCode\": \"UG\",\r\n                \"age\": 31,\r\n                \"gender\": \"Male\",\r\n                \"isVaccinated\": false,\r\n                \"createdAt\": \"2022-07-29T03:43:50.225Z\",\r\n                \"updatedAt\": \"2022-07-29T03:43:50.225Z\",\r\n                \"__v\": 0\r\n            }\r\n        ]\r\n    }\r\n]"
+						}
+					]
 				}
 			]
 		}
