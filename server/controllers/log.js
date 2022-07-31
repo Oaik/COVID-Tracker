@@ -3,12 +3,12 @@ const axios = require("axios");
 const Log = require('../models/Log');
 
 const showLogs = async (req, res) => {
-    const country = req.query.country;
-    if(country) {
+    const countryName = req.query.country;
+    if(countryName) {
         return Log
-            .find({country: country})
+            .find({countryName})
             .then(logs => res.json(logs))
-            .catch(error => res.json({error: `Could not fetch data with country ${country}`, errorMessage: error}))
+            .catch(error => res.json({error: `Could not fetch data with country ${countryName}`, errorMessage: error}))
     }
     
     return Log

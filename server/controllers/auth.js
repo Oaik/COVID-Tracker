@@ -23,7 +23,7 @@ const register = (req, res) => {
 
         newUser.save((error) => {
             if(error) {
-                return res.json({error: "Error while creating user in register the email is already registered", errorMessage: error});
+                return res.json({error: `Error while creating user ${error.message}`, errorMessage: error});
             }
 
             return res.json({});        
@@ -43,7 +43,7 @@ const login = (req, res) => {
 
         bcrypt.compare(req.body.password, user.password).then((isMatch) => {
             if(!isMatch) {
-                return res.send("password does not match");
+                return res.json({error: "Wrong password"});
             }
 
             jwt.sign(

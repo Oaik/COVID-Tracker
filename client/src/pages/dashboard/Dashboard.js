@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from 'axios'
 
-import Map from "../../components/map/Map";
 import { Container, Row, Col, FloatingLabel, Form } from 'react-bootstrap';
-
+import Map from "../../components/map/Map";
 import LogsContainer from "../../components/LogsContainer/LogsContainer";
 
 import "./dashboard.css"
@@ -14,21 +13,22 @@ function Dashboard() {
     const [statistics, setStatistics] = useState([]);
     const [dashboardInfo, setDashboardInfo] = useState({});
 
-    const updateGender = (event) => {
+    const updateCountry = (event) => {
         setCountryToDisplayLogs(event.target.value);
     }
 
     useEffect(() => {
-
-        axios.get("http://localhost:8000/dashboard").then((response) => {
-            setStatistics(response.data);
-            setDashboardInfo({
-                diffrentCountries: response.data.length,
-                totalPatients: response.data.reduce((sum, logsInCountry) => sum + logsInCountry.length, 0),
-                maxDiffrent: Math.max(...response.data.map(current => current.length)),
-                maxCountry: response.data.reduce((prev, current) => (prev.length > current.length) ? prev: current)
+        axios.get("http://localhost:8000/dashboard")
+            .then((response) => {
+                setStatistics(response.data);
+                setDashboardInfo({
+                    diffrentCountries: response.data.length,
+                    totalPatients: response.data.reduce((sum, logsInCountry) => sum + logsInCountry.length, 0),
+                    maxDiffrent: Math.max(...response.data.map(current => current.length)),
+                    maxCountry: response.data.reduce((prev, current) => (prev.length > current.length) ? prev: current)
+                })
             })
-        }).catch((error) => console.error(error));
+            .catch(error => console.error(error));
     });
 
     return (
@@ -113,7 +113,7 @@ function Dashboard() {
             </Container>
             <Container className="my-5">
                 <FloatingLabel controlId="floatingSelect" label="Select Country To Display logs">
-                    <Form.Select name="gender" aria-label="Floating label select example" onChange={updateGender}>
+                    <Form.Select name="gender" aria-label="Floating label select example" onChange={updateCountry}>
                         <option value={-1}>Hide All Logs</option>
 
                         {

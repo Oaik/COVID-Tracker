@@ -8,7 +8,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import AuthContext from '../../contexts/authContext';
 import LogsContainer from "../../components/LogsContainer/LogsContainer";
 
-import formProfileSchema from '../../Validations/profile'
+import formProfileSchema from '../../validations/profile'
 
 function Profile() {
     const navigate = useNavigate()
@@ -98,57 +98,57 @@ function Profile() {
                             </div>
 
                             {!isUpdating ? 
-                            (
-                                <div className="text-center">
-                                    <h3 className="mb-3">
-                                        Hello, {authState.name}
-                                    </h3>
+                                (
+                                    <div className="text-center">
+                                        <h3 className="mb-3">
+                                            Hello, {authState.name}
+                                        </h3>
 
-                                    <Button variant="dark" type="submit" onClick={toogleUpdateForm}>
-                                        update Profile
-                                    </Button>
-                                </div>
-
-                            ) 
-                            : 
-                            (
-                            
-                            <Formik
-                                initialValues={{ name: authState.name }}
-                                onSubmit={handleOnSubmit}
-                                validationSchema={formProfileSchema}
-                                
-                            >
-                                {({ isSubmitting }) => (
-                                <Form noValidate className='pt-5'>
-                                    <FloatingLabel controlId="name" label="name" className="mt-3">
-                                        <Field id="name" type="name" name="name" className="form-control" />
-                                    </FloatingLabel>                                
-                                    <ErrorMessage name="name" className="errorMsg text-danger" component="p" />
-
-                                    <Row className="mt-4 mb-2">
-                                        <Col >
-                                            <div className='d-grid gap-2' >
-                                                <Button variant="primary" type="submit" disabled={isSubmitting}>
-                                                    Update User
-                                                </Button>
-                                            </div>
-                                        </Col>
-                                    </Row>
-
-                                    {serverState && (
-                                    <div className={!serverState.ok ? "errorMsg" : ""}>
-                                        <Alert key={!serverState.ok ? "danger" : "success"} variant={!serverState.ok ? "danger" : "success"} >
-                                            {serverState.msg}
-                                        </Alert>
-                                        
+                                        <Button variant="dark" type="submit" onClick={toogleUpdateForm}>
+                                            update Profile
+                                        </Button>
                                     </div>
-                                    )}
 
-                                </Form>
-                                )}
-                            </Formik>
-                            )
+                                ) 
+                            : 
+                                (
+                                
+                                    <Formik
+                                        initialValues={{ name: authState.name }}
+                                        onSubmit={handleOnSubmit}
+                                        validationSchema={formProfileSchema}
+                                        
+                                    >
+                                        {({ isSubmitting }) => (
+                                        <Form noValidate className='pt-5'>
+                                            <FloatingLabel controlId="name" label="name" className="mt-3">
+                                                <Field id="name" type="name" name="name" className="form-control" />
+                                            </FloatingLabel>                                
+                                            <ErrorMessage name="name" className="errorMsg text-danger" component="p" />
+
+                                            <Row className="mt-4 mb-2">
+                                                <Col >
+                                                    <div className='d-grid gap-2' >
+                                                        <Button variant="primary" type="submit" disabled={isSubmitting}>
+                                                            Update User
+                                                        </Button>
+                                                    </div>
+                                                </Col>
+                                            </Row>
+
+                                            {serverState && (
+                                            <div className={!serverState.ok ? "errorMsg" : ""}>
+                                                <Alert key={!serverState.ok ? "danger" : "success"} variant={!serverState.ok ? "danger" : "success"} >
+                                                    {serverState.msg}
+                                                </Alert>
+                                                
+                                            </div>
+                                            )}
+
+                                        </Form>
+                                        )}
+                                    </Formik>
+                                )
                             }
 
                         </div>
@@ -180,16 +180,11 @@ function Profile() {
                         
                         <Link to="/log" className="text-muted">
                            Create new log?
-                           
                         </Link>
                     </Col>
-
-
                 </Row>
             </Container>
         </div>
-
-        
     )
 }
 

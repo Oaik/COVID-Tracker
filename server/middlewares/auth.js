@@ -14,7 +14,7 @@ const validateToken = async (req, res, next) => {
         req.user = decodedData;
         next();
     } catch(error) {
-        return res.json({error: "Error while decoding the token", errorMessage: error});
+        return res.json({error: "Wrong token has been passed not authorized to continue", errorMessage: error});
     }
 }
 

@@ -3,24 +3,22 @@ import { useNavigate } from "react-router-dom"
 import axios from 'axios';
 
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Button, FloatingLabel, Container, Row, Col, Alert } from 'react-bootstrap';
 
-import { Form as FormBS, Button, FloatingLabel, Container, Row, Col, Alert } from 'react-bootstrap';
-
-import formLogSchema from '../../Validations/log'
-
+import formLogSchema from '../../validations/log'
 
 function Log() {
     const navigate = useNavigate()
 
     const [serverState, setServerState] = useState();
-    const handleServerResponse = (ok, msg) => {
-      setServerState({ok, msg});
-    };
-
     const [logPositionState, setLogPositionState] = useState({
         latitude: 0,
         longitude: 0
     })
+
+    const handleServerResponse = (ok, msg) => {
+        setServerState({ok, msg});
+    };
 
     const setPositionCoordinaties = (coordinaties) => {
         setLogPositionState({
@@ -40,27 +38,33 @@ function Log() {
     }, [])
 
     const handleOnSubmit = (values, actions) => {
-        axios.post("http://localhost:8000/api/log", {
-            ...values,
-            ...logPositionState
-        }, {
-            headers: {
-                'Content-Type': 'application/json',
-                'accessToken': localStorage.getItem("accessToken")
-            }
-        }).then((response) => {
-            actions.setSubmitting(false);
+        axios
+            .post("http://localhost:8000/api/log", 
+                {
+                    ...values,
+                    ...logPositionState
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'accessToken': localStorage.getItem("accessToken")
+                    }
+                }
+            )
+            .then((response) => {
+                actions.setSubmitting(false);
 
-            if(response.data.error) {
-                handleServerResponse(false, response.data.error);
-                return
-            }
+                if(response.data.error) {
+                    handleServerResponse(false, response.data.error);
+                    return
+                }
 
-            handleServerResponse(true, "Your Log sucessfuly saved");
-        }).catch((error) => {
-            console.error(error);
-            handleServerResponse(false, error.response.data.error);
-        })
+                handleServerResponse(true, "Your Log sucessfuly saved");
+            })
+            .catch((error) => {
+                console.error(error);
+                handleServerResponse(false, error.response.data.error);
+            })
     }
 
     return (
@@ -68,8 +72,8 @@ function Log() {
             <Container>
                 <Row className='my-5'>
                     <h3 className='text-center mb-3'>Create Log</h3>
-                    <Col sm={12} md={{span: 6, offset: 3}}>
 
+                    <Col sm={12} md={{span: 6, offset: 3}}>
 
                     <Formik
                             initialValues={{ temperature: "", age: "", gender: "Other", isVaccinated: false }}
@@ -77,97 +81,63 @@ function Log() {
                             validationSchema={formLogSchema}
                         >
                             {({ isSubmitting }) => (
-                            <Form noValidate>
-                                <FloatingLabel controlId="temperature" label="temperature" className="mt-3">
-                                    <Field id="temperature" type="number" name="temperature" className="form-control" />
-                                </FloatingLabel>                                
-                                <ErrorMessage name="temperature" className="errorMsg text-danger" component="p" />
+                                <Form noValidate>
+                                    <FloatingLabel controlId="temperature" label="temperature" className="mt-3">
+                                        <Field id="temperature" type="number" name="temperature" className="form-control" />
+                                    </FloatingLabel>                                
+                                    <ErrorMessage name="temperature" className="errorMsg text-danger" component="p" />
 
-                                
-                                <FloatingLabel controlId="age" label="age" className="mt-3">
-                                    <Field id="age" type="number" name="age" className="form-control" />
-                                </FloatingLabel>                                
-                                <ErrorMessage name="age" className="errorMsg text-danger" component="div" />
-
-                                <FloatingLabel controlId="floatingSelect" label="Select your gender" className="mt-3">
-                                    <Field as="select" name="gender" aria-label="Floating label select example"  className="form-control">
-                                        <option disabled value="Other"></option>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
-                                    </Field>
-                                </FloatingLabel>
-                                <ErrorMessage name="gender" className="errorMsg text-danger" component="div" />
-
-                                <div className='form-check form-switch my-3'>
-                                    <Field type="checkbox" id="isVaccinated" name="isVaccinated" label="Are you Vaccinated" className="form-check-input">                                    
-                                    </Field>
-                                    <label htmlFor="isVaccinated">
-                                    Are you Vaccinated
-                                    </label>
-                                </div>
-                                <ErrorMessage name="isVaccinated" className="errorMsg text-danger" component="div" />
-
-                                <Row className="mt-4 mb-2">
-                                    <Col >
-                                        <div className='d-grid gap-2' >
-                                            <Button variant="dark" type="submit" disabled={isSubmitting}>
-                                            Create new log
-                                            </Button>
-                                        </div>
-                                    </Col>
-                                </Row>
-
-                                {serverState && (
-                                <div className={!serverState.ok ? "errorMsg" : ""}>
-                                    <Alert key={!serverState.ok ? "danger" : "success"} variant={!serverState.ok ? "danger" : "success"} >
-                                        {serverState.msg}
-                                    </Alert>
                                     
-                                </div>
-                                )}
+                                    <FloatingLabel controlId="age" label="age" className="mt-3">
+                                        <Field id="age" type="number" name="age" className="form-control" />
+                                    </FloatingLabel>                                
+                                    <ErrorMessage name="age" className="errorMsg text-danger" component="div" />
 
-
-                            </Form>
-                            )}
-                        </Formik>
-
-                        {/* <Form>
-                            <Form.Group className="mb-3" controlId="email">
-                                <FloatingLabel controlId="temperature" label="temperature" className="mt-3">
-                                    <Form.Control name='temperature' type="number" placeholder="Enter temperature" onChange={updateInputAttribute} />
-                                </FloatingLabel>
-                            </Form.Group>
-
-                            <Form.Group className="mb-3" controlId="name">
-                                <FloatingLabel controlId="age" label="age" className="mt-3">
-                                    <Form.Control name='age' type="number" placeholder="Enter age" onChange={updateInputAttribute} />
-                                </FloatingLabel>
-                            </Form.Group>
-
-                            <Form.Group className="mb-3" controlId="gender">                
-                                    <FloatingLabel controlId="floatingSelect" label="Select your gender">
-                                        <Form.Select name="gender" defaultValue="Other" aria-label="Floating label select example" onChange={updateInputAttribute}>
+                                    <FloatingLabel controlId="floatingSelect" label="Select your gender" className="mt-3">
+                                        <Field as="select" name="gender" aria-label="Floating label select example"  className="form-control">
                                             <option disabled value="Other"></option>
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>
-                                        </Form.Select>
+                                        </Field>
                                     </FloatingLabel>
-                            </Form.Group>
+                                    
+                                    <ErrorMessage name="gender" className="errorMsg text-danger" component="div" />
 
-                            <Form.Group className="mb-3" controlId="isVaccinated">
+                                    <div className='form-check form-switch my-3'>
+                                        <Field type="checkbox" id="isVaccinated" name="isVaccinated" label="Are you Vaccinated" className="form-check-input">                                    
+                                        </Field>
 
-                            </Form.Group>
+                                        <label htmlFor="isVaccinated">
+                                            Are you Vaccinated
+                                        </label>
+                                    </div>
+                                    <ErrorMessage name="isVaccinated" className="errorMsg text-danger" component="div" />
 
-                            <Button variant="primary" type="submit" onClick={createLog}>
-                                Create new log
-                            </Button>
-                        </Form> */}
+                                    <Row className="mt-4 mb-2">
+                                        <Col >
+                                            <div className='d-grid gap-2' >
+                                                <Button variant="dark" type="submit" disabled={isSubmitting}>
+                                                    Create new log
+                                                </Button>
+                                            </div>
+                                        </Col>
+                                    </Row>
+
+                                    {serverState && (
+                                        <div className={!serverState.ok ? "errorMsg" : ""}>
+                                            <Alert key={!serverState.ok ? "danger" : "success"} variant={!serverState.ok ? "danger" : "success"} >
+                                                {serverState.msg}
+                                            </Alert>
+                                        </div>
+                                    )}
+
+                                </Form>
+                            )}
+                        </Formik>
                     </Col>
-                </Row>
-                
+                </Row>   
             </Container>
         </div>
-        
     )
 }
 

@@ -20,7 +20,7 @@
 - [Design of API](#design-of-api)
 - [Front-End](#front-end)
 - [UI-UX](#ui-ux)
-- [Screenshots for the website](#built-with)
+- [Screenshots of the website](#screenshots)
 
 ## About
   > Covid-Tracker is a fully responsive tracker app that is used for recording logs with temperature in each country built using [reactjs](https://reactjs.org/).
@@ -84,3 +84,36 @@ I have collected images for the project from unsplash this is the list of images
 - https://unsplash.com/photos/QAAMEm1fyIQ
 - https://unsplash.com/photos/-p-KCm6xB9I
 
+
+## Screenshots
+
+#### Home Page
+
+<img src="/screenshots/home-1.png" />
+<img src="/screenshots/home-2.png" />
+<img src="/screenshots/home-3.png" />
+<img src="/screenshots/home-4.png" />
+
+#### Dashboard page
+
+<img src="/screenshots/dashboard-1.png" />
+<img src="/screenshots/dashboard-2.png" />
+<img src="/screenshots/dashboard-3.png" />
+
+#### Register Page
+
+<img src="/screenshots/register.png" />
+
+#### Login page
+
+<img src="/screenshots/login.png" />
+
+#### Profile page
+
+<img src="/screenshots/profile-1.png" />
+<img src="/screenshots/profile-2.png" />
+<img src="/screenshots/profile-3.png" />
+
+#### Create Log Page
+
+<img src="/screenshots/createlog.png" />
