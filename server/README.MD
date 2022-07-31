@@ -62,20 +62,17 @@ response request will be in form to:
 
 ### design of the api
 
+The API made in postman you can include the collection in your own postman <a href="/postman-collection/COVID-Tracker.postman_collection.json">JSON File</a>.
+
+Read postman docmentation collection for <a href="https://documenter.getpostman.com/view/1537357/UzXNSwq1">COVID-Tracker</a>
+
 #### registration/login:
 <ul>
   <li>
     Login
     <ul>
       <li> 
-        post request to: localhost:3000/api/login
-        <pre>
-        BODY
-        {
-            "email": "email@gmail.com",
-            "password": "asd123"
-        }
-        </pre>
+        post request to: <code>localhost:3000/api/login </code>
       </li>
     </ul>
   </li>
@@ -83,15 +80,7 @@ response request will be in form to:
     Register
     <ul>
       <li> 
-        post request to: localhost:3000/api/register
-        <pre>
-        BODY
-        {
-            "email": "email@gmail.com",
-            "name": "omar",
-            "password": "ENCRYPTasd123"
-        }
-        </pre>
+        post request to: <code>localhost:3000/api/register </code>
       </li>
     </ul>
   </li>
@@ -108,12 +97,6 @@ response request will be in form to:
         <code>
         "Header with AUTHORIZATION: Bearer Token"
         </code>
-        <br/>
-        <pre>
-          Body: {
-            "name": "New Name"
-          }
-        </pre>
       </li>
     </ul>
   </li>
@@ -122,7 +105,7 @@ response request will be in form to:
     get current profile
     <ul>
       <li> 
-        Post request to: http://localhost:8000/api/profile
+        Post request to: <code>http://localhost:8000/api/profile</code>
       </li>
     </ul>
   </li>
@@ -131,7 +114,7 @@ response request will be in form to:
     Get user profile with id
     <ul>
       <li> 
-        Get request to: http://localhost:8000/api/profile/:id
+        Get request to: <code>http://localhost:8000/api/profile/:id</code>
       </li>
     </ul>
   </li>
@@ -147,18 +130,6 @@ response request will be in form to:
         <code>
         "Header with AUTHORIZATION: Bearer Token"
         </code>
-        <br/>
-        <pre>
-          Body: {
-          "temperature": 38,
-          "latitude": 48.0232,
-          "longitude": 48.0232,
-          "age": 22,
-          "gender": true,
-          "isVaccinated": true,
-          "timestamp": "2023-04-23T18:25:43.511Z"
-          }
-        </pre>
       </li>
     </ul>
   </li>
@@ -167,7 +138,7 @@ response request will be in form to:
     get log
     <ul>
       <li> 
-        Get request to: http://localhost:8000/api/logs
+        Get request to: <code>http://localhost:8000/api/logs</code>
       </li>
     </ul>
   </li>
@@ -176,7 +147,7 @@ response request will be in form to:
     get log in country
     <ul>
       <li> 
-        Get request to: http://localhost:8000/api/logs?country=COUNTRYNAME
+        Get request to: <code>http://localhost:8000/api/logs?country=COUNTRYNAME</code>
       </li>
     </ul>
   </li>

@@ -1,8 +1,35 @@
 ## Table of Contents
+- [Built With](#built-with)
 - [Pages](#pages)
 - [Components](#components)
-- [Other Library](#other-library)
 - [Available Scripts](#available-scripts)
+
+## Built With
+<ul>
+<li>
+<a href="https://reactjs.org/">Reactjs</a>
+</li>
+<li>
+<a href="https://axios-http.com/docs/intro">Axios: </a>
+</li>
+<li>
+<a href="https://react-leaflet.js.org/">leaflet-react: </a>
+React components for Leaflet maps
+</li>
+<li>
+<a href="https://leafletjs.com/">Leaflet: </a>
+an open-source JavaScript library for mobile-friendly interactive maps
+</li>
+<li>
+<a href="https://react-bootstrap.github.io/">Bootstrap: </a>
+</li>
+
+</ul>
+
+Note: to embed Leaflet go to public/index.html and add the required scripts and style for more information see the <a href="https://leafletjs.com/examples/quick-start/">Documentation</a>
+
+
+
 
 ## Pages
 
@@ -18,29 +45,11 @@ We will have 6 pages:
 
 ## Components
 - navbar
-- footer
 - map
+- logsContainer
+- log
+- footer
 
-
-## Other library
-<ul>
-<li>
-<a href="https://react-leaflet.js.org/">leaflet-react: </a>
-React components for Leaflet maps
-</li>
-<li>
-<a href="https://leafletjs.com/">Leaflet: </a>
-an open-source JavaScript library for mobile-friendly interactive maps
-</li>
-<li>
-<a href="https://axios-http.com/docs/intro">Axios: </a>
-</li>
-<li>
-<a href="https://reactjs.org/">Reactjs</a>
-</li>
-</ul>
-
-Note: to embed Leaflet go to public/index.html and add the required scripts and style for more information see the <a href="https://leafletjs.com/examples/quick-start/">Documentation</a>
 
 
 ## Available Scripts
@@ -64,8 +73,3 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-
-#### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
