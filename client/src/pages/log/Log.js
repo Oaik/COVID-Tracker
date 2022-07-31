@@ -50,6 +50,13 @@ function Log() {
             }
         }).then((response) => {
             actions.setSubmitting(false);
+
+            if(response.data.error) {
+                handleServerResponse(false, response.data.error);
+                return
+            }
+
+            handleServerResponse(true, "");
         }).catch((error) => {
             console.error(error);
             handleServerResponse(false, error.response.data.error);
@@ -91,7 +98,7 @@ function Log() {
                                 </FloatingLabel>
                                 <ErrorMessage name="gender" className="errorMsg text-danger" component="div" />
 
-                                <div className='form-check form-switch'>
+                                <div className='form-check form-switch my-3'>
                                     <Field type="checkbox" id="isVaccinated" name="isVaccinated" label="Are you Vaccinated" className="form-check-input">                                    
                                     </Field>
                                     <label htmlFor="isVaccinated">

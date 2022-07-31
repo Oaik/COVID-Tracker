@@ -31,15 +31,16 @@ function Register() {
                 'Content-Type': 'application/json'
             }
         }).then((response) => {
-            if(response.data === "User created") {
+            if(response.data.error) {
                 actions.setSubmitting(false);
-                actions.resetForm();
+                handleServerResponse(false, response.data.error);
+                return;
+            } 
+            
+            actions.setSubmitting(false);
+            actions.resetForm();
 
-                navigate('/login');
-            } else {
-                actions.setSubmitting(false);
-                handleServerResponse(false, "can not register");
-            }
+            navigate('/login');
         }).catch((error) => {
             actions.setSubmitting(false);
             handleServerResponse(false, error.response.data.error);
