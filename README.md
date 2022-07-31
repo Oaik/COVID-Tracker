@@ -15,7 +15,8 @@
 
 ## Table of Contents
 - [About the Project](#about)
-  - [Build with](#build-with)
+  - [Live preview](#live-preview)
+  - [Built with](#built-with)
 - [Design of Database](#design-of-database)
 - [Design of API](#design-of-api)
 - [Front-End](#front-end)
@@ -24,6 +25,9 @@
 
 ## About
   > Covid-Tracker is a fully responsive tracker app that is used for recording logs with temperature in each country built using [reactjs](https://reactjs.org/).
+
+## Live preview
+You can see live preview of the website <a href="https://oaik.github.io/COVID-Tracker-clientside-deploy/">here</a>
 
 ### Built with
 <ul>
@@ -89,31 +93,31 @@ I have collected images for the project from unsplash this is the list of images
 
 #### Home Page
 
-<img src="/screenshots/home-1.png" />
-<img src="/screenshots/home-2.png" />
-<img src="/screenshots/home-3.png" />
-<img src="/screenshots/home-4.png" />
+<img src="/screenshots/home-1.PNG" />
+<img src="/screenshots/home-2.PNG" />
+<img src="/screenshots/home-3.PNG" />
+<img src="/screenshots/home-4.PNG" />
 
 #### Dashboard page
 
-<img src="/screenshots/dashboard-1.png" />
-<img src="/screenshots/dashboard-2.png" />
-<img src="/screenshots/dashboard-3.png" />
+<img src="/screenshots/dashboard-1.PNG" />
+<img src="/screenshots/dashboard-2.PNG" />
+<img src="/screenshots/dashboard-3.PNG" />
 
 #### Register Page
 
-<img src="/screenshots/register.png" />
+<img src="/screenshots/register.PNG" />
 
 #### Login page
 
-<img src="/screenshots/login.png" />
+<img src="/screenshots/login.PNG" />
 
 #### Profile page
 
-<img src="/screenshots/profile-1.png" />
-<img src="/screenshots/profile-2.png" />
-<img src="/screenshots/profile-3.png" />
+<img src="/screenshots/profile-1.PNG" />
+<img src="/screenshots/profile-2.PNG" />
+<img src="/screenshots/profile-3.PNG" />
 
 #### Create Log Page
 
-<img src="/screenshots/createlog.png" />
+<img src="/screenshots/createlog.PNG" />
