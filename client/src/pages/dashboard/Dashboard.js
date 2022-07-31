@@ -21,7 +21,6 @@ function Dashboard() {
     useEffect(() => {
 
         axios.get("http://localhost:8000/dashboard").then((response) => {
-            // console.log(response.data)
             setStatistics(response.data);
             setDashboardInfo({
                 diffrentCountries: response.data.length,
@@ -29,7 +28,6 @@ function Dashboard() {
                 maxDiffrent: Math.max(...response.data.map(current => current.length)),
                 maxCountry: response.data.reduce((prev, current) => (prev.length > current.length) ? prev: current)
             })
-            // console.log(dashboardInfo.maxCountry)
         }).catch((e) => console.error(e));
     });
 

@@ -31,11 +31,8 @@ function Login() {
                 'Content-Type': 'application/json'
             }
         }).then((response) => {
-            console.log(response.data);
             if(response.data.accessToken) {
                 actions.setSubmitting(false);
-                actions.resetForm();
-                handleServerResponse(true, "Thanks!");
 
                 localStorage.setItem("accessToken", response.data.accessToken);
     
@@ -49,15 +46,12 @@ function Login() {
             } else {
                 actions.setSubmitting(false);
                 handleServerResponse(false, "wrong email and password");
-                console.log("No token");
             }
-
-            
-
         }).catch((error) => {
             actions.setSubmitting(false);
             handleServerResponse(false, error.response.data.error);
-            console.log("Error while logging", error);
+            
+            console.error("Error while logging", error);
         })
     }
 

@@ -31,8 +31,6 @@ function Register() {
                 'Content-Type': 'application/json'
             }
         }).then((response) => {
-            console.log(response.data);
-
             if(response.data === "User created") {
                 actions.setSubmitting(false);
                 actions.resetForm();
@@ -45,7 +43,8 @@ function Register() {
         }).catch((error) => {
             actions.setSubmitting(false);
             handleServerResponse(false, error.response.data.error);
-            console.log("Error while logging", error);
+
+            console.log("Error while register", error);
         })
     }
 

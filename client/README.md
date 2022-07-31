@@ -2,6 +2,7 @@
 - [Built With](#built-with)
 - [Pages](#pages)
 - [Components](#components)
+- [Validation](#validation)
 - [Available Scripts](#available-scripts)
 
 ## Built With
@@ -51,6 +52,9 @@ We will have 6 pages:
 - footer
 
 
+## Validation
+There is Validation schema for (Login, Register, Profile, Log) pages,
+I used Yup for validation
 
 ## Available Scripts
 

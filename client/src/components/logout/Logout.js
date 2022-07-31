@@ -16,7 +16,7 @@ const Logout = () => {
 
             navigate('/');
         }).catch((error) => {
-            console.log("Can not logout");
+            console.log("Can not logout", error);
         })
     }, []);
 };

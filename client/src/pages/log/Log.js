@@ -2,38 +2,28 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom"
 import axios from 'axios';
 
-import { Form, Button, FloatingLabel, Container, Row, Col } from 'react-bootstrap';
+import { Formik, Form, Field, ErrorMessage } from "formik";
+
+import { Form as FormBS, Button, FloatingLabel, Container, Row, Col, Alert } from 'react-bootstrap';
+
+import formLogSchema from '../../Validations/log'
+
 
 function Log() {
     const navigate = useNavigate()
 
-    const [logState, setLogState] = useState({
-        temperature: 0,
+    const [serverState, setServerState] = useState();
+    const handleServerResponse = (ok, msg) => {
+      setServerState({ok, msg});
+    };
+
+    const [logPositionState, setLogPositionState] = useState({
         latitude: 0,
-        longitude: 0,
-        age: 0,
-        isVaccinated: false,
-        gender: "Other"
+        longitude: 0
     })
 
-    const updateInputAttribute = (event) => {
-        console.log(event.target.name);
-        setLogState({
-            ...logState,
-            [event.target.name]: event.target.value
-        })
-    }
-
-    const changeCheckboxInput = (event) => {
-        setLogState({
-            ...logState,
-            [event.target.name]: event.target.checked
-        })
-    }
-
     const setPositionCoordinaties = (coordinaties) => {
-        setLogState({
-            ...logState,
+        setLogPositionState({
             longitude: coordinaties.longitude,
             latitude: coordinaties.latitude
         })
@@ -49,18 +39,20 @@ function Log() {
         });
     }, [])
 
-    const createLog = (event) => {
-        event.preventDefault();
-        console.log(logState);
+    const handleOnSubmit = (values, actions) => {
         axios.post("http://localhost:8000/api/log", {
-            ...logState          
-        }, {            
+            ...values,
+            ...logPositionState
+        }, {
             headers: {
                 'Content-Type': 'application/json',
                 'accessToken': localStorage.getItem("accessToken")
             }
         }).then((response) => {
-            console.log("log", response.data);
+            actions.setSubmitting(false);
+        }).catch((error) => {
+            console.error(error);
+            handleServerResponse(false, error.response.data.error);
         })
     }
 
@@ -70,7 +62,69 @@ function Log() {
                 <Row className='my-5'>
                     <h3 className='text-center mb-3'>Create Log</h3>
                     <Col sm={12} md={{span: 6, offset: 3}}>
-                        <Form>
+
+
+                    <Formik
+                            initialValues={{ temperature: "", age: "", gender: "Other", isVaccinated: false }}
+                            onSubmit={handleOnSubmit}
+                            validationSchema={formLogSchema}
+                        >
+                            {({ isSubmitting }) => (
+                            <Form noValidate>
+                                <FloatingLabel controlId="temperature" label="temperature" className="mt-3">
+                                    <Field id="temperature" type="number" name="temperature" className="form-control" />
+                                </FloatingLabel>                                
+                                <ErrorMessage name="temperature" className="errorMsg text-danger" component="p" />
+
+                                
+                                <FloatingLabel controlId="age" label="age" className="mt-3">
+                                    <Field id="age" type="number" name="age" className="form-control" />
+                                </FloatingLabel>                                
+                                <ErrorMessage name="age" className="errorMsg text-danger" component="div" />
+
+                                <FloatingLabel controlId="floatingSelect" label="Select your gender" className="mt-3">
+                                    <Field as="select" name="gender" aria-label="Floating label select example"  className="form-control">
+                                        <option disabled value="Other"></option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </Field>
+                                </FloatingLabel>
+                                <ErrorMessage name="gender" className="errorMsg text-danger" component="div" />
+
+                                <div className='form-check form-switch'>
+                                    <Field type="checkbox" id="isVaccinated" name="isVaccinated" label="Are you Vaccinated" className="form-check-input">                                    
+                                    </Field>
+                                    <label htmlFor="isVaccinated">
+                                    Are you Vaccinated
+                                    </label>
+                                </div>
+                                <ErrorMessage name="isVaccinated" className="errorMsg text-danger" component="div" />
+
+                                <Row className="mt-4 mb-2">
+                                    <Col >
+                                        <div className='d-grid gap-2' >
+                                            <Button variant="dark" type="submit" disabled={isSubmitting}>
+                                            Create new log
+                                            </Button>
+                                        </div>
+                                    </Col>
+                                </Row>
+
+                                {serverState && (
+                                <div className={!serverState.ok ? "errorMsg" : ""}>
+                                    <Alert key="danger" variant="danger" >
+                                        {serverState.msg}
+                                    </Alert>
+                                    
+                                </div>
+                                )}
+
+
+                            </Form>
+                            )}
+                        </Formik>
+
+                        {/* <Form>
                             <Form.Group className="mb-3" controlId="email">
                                 <FloatingLabel controlId="temperature" label="temperature" className="mt-3">
                                     <Form.Control name='temperature' type="number" placeholder="Enter temperature" onChange={updateInputAttribute} />
@@ -94,18 +148,13 @@ function Log() {
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="isVaccinated">
-                                <Form.Check onChange={changeCheckboxInput}
-                                    type="switch"
-                                    id="isVaccinated"
-                                    name="isVaccinated"
-                                    label="Are you Vaccinated"
-                                />
+
                             </Form.Group>
 
                             <Button variant="primary" type="submit" onClick={createLog}>
                                 Create new log
                             </Button>
-                        </Form>
+                        </Form> */}
                     </Col>
                 </Row>
                 
