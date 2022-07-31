@@ -39,12 +39,7 @@ function Dashboard() {
                 <div className="dashboard-intro-caption text-light">
                     <h2>Live Stats Dashboard </h2>
                 </div>
-
             </div>
-
-
-
-
 
             <div>
                 <Map data={statistics}/>
@@ -56,7 +51,9 @@ function Dashboard() {
                         <Col xs={12} sm={6} md={3} className="my-4">
                             <div>
                                 Total Patients: 
+
                                 <br/>
+
                                 <strong>
                                     {dashboardInfo.totalPatients}
                                 </strong>
@@ -67,7 +64,9 @@ function Dashboard() {
                         <Col xs={12} sm={6} md={3} className="my-4">
                             <div>
                                 Number of different countries
+
                                 <br/>
+
                                 <strong>
                                     {dashboardInfo.diffrentCountries}
                                 </strong>
@@ -79,7 +78,9 @@ function Dashboard() {
                             <Col xs={12} sm={6} md={3} className="my-4">
                                 <div>
                                     The top country is: 
+
                                     <br/> 
+
                                     <strong>
                                         <img alt="country flag" src={"https://disease.sh/assets/img/flags/" + dashboardInfo.maxCountry.countryCode.toLowerCase() + ".png"} height="20px" width="25px"/>
                                         {dashboardInfo.maxCountry.countryName}
@@ -91,7 +92,9 @@ function Dashboard() {
                             <Col xs={12} sm={6} md={3} className="my-4">
                                 <div>
                                     Number of patients in {dashboardInfo.maxCountry.countryName} is: 
+
                                     <br/> 
+
                                     <strong>
                                         {dashboardInfo.maxCountry.length}
                                     </strong>
@@ -133,13 +136,14 @@ function Dashboard() {
 
             <Container className="mb-5">
                 {
-                    countryToDisplayLogs != -1 && statistics.length > countryToDisplayLogs &&
+                    countryToDisplayLogs > 0 && statistics.length > countryToDisplayLogs &&
                     <>
                         <h3>
                             All Logs In 
                             <img className="mx-2" alt="country flag" src={"https://disease.sh/assets/img/flags/" + statistics[countryToDisplayLogs].countryCode.toLowerCase() + ".png"} height="20px" width="25px"/>
                             {statistics[countryToDisplayLogs].countryName}
                         </h3>
+                        
                         <LogsContainer logs={statistics[countryToDisplayLogs].data} />
                     </>
                     

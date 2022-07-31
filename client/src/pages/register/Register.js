@@ -1,13 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate, Link } from "react-router-dom"
 import axios from 'axios';
 
 import { Form, Button, FloatingLabel, Container, Row, Col } from 'react-bootstrap';
 
+import AuthContext from '../../contexts/authContext';
+
 import "./register.css"
 
 function Register() {
     const navigate = useNavigate()
+
+    const { authState } = useContext(AuthContext);
 
     const [userState, setUserState] = useState({
         email: "",
@@ -40,13 +44,21 @@ function Register() {
         })
     }
 
+    useEffect(() => {
+        // Already there is log in user
+        if(authState.status) {
+            navigate('/');
+        }
+    }, [authState])
+
     return (
         <div className=''>
             <Container fluid>
                 <Row className=''>
-                    <Col xs={{span: 12}} md={{span: 4, offset: 1}}>
+                    <Col xs={{span: 12}} md={{span: 4, offset: 1}} className="pt-5 me-5">
+                            <h3>Create your new account in easy steps</h3>
 
-                            <Form className='pt-5 me-5'>
+                            <Form className='mt-5'>
                                 <Form.Group className="mb-3" controlId="email">
                                     <FloatingLabel controlId="email" label="Email" className="mt-3">
                                         <Form.Control name='email' type="email" placeholder="Enter email" onChange={updateInputAttribute} />

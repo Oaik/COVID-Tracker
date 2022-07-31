@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom"
 import axios from 'axios';
 
@@ -11,7 +11,7 @@ import "./login.css"
 function Login() {
     const navigate = useNavigate()
 
-    const { setAuthState } = useContext(AuthContext);
+    const { authState, setAuthState } = useContext(AuthContext);
 
     const [userState, setUserState] = useState({
         email: "",
@@ -52,6 +52,13 @@ function Login() {
             console.log("Error while logging", error);
         })
     }
+
+    useEffect(() => {
+        // Already there is log in user
+        if(authState.status) {
+            navigate('/');
+        }
+    }, [authState])
 
     return (
         <div className='input-container'>
