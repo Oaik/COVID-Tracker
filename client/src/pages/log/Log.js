@@ -56,7 +56,7 @@ function Log() {
                 return
             }
 
-            handleServerResponse(true, "");
+            handleServerResponse(true, "Your Log sucessfuly saved");
         }).catch((error) => {
             console.error(error);
             handleServerResponse(false, error.response.data.error);
@@ -119,7 +119,7 @@ function Log() {
 
                                 {serverState && (
                                 <div className={!serverState.ok ? "errorMsg" : ""}>
-                                    <Alert key="danger" variant="danger" >
+                                    <Alert key={!serverState.ok ? "danger" : "success"} variant={!serverState.ok ? "danger" : "success"} >
                                         {serverState.msg}
                                     </Alert>
                                     

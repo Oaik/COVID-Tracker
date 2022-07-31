@@ -28,7 +28,7 @@ function Dashboard() {
                 maxDiffrent: Math.max(...response.data.map(current => current.length)),
                 maxCountry: response.data.reduce((prev, current) => (prev.length > current.length) ? prev: current)
             })
-        }).catch((e) => console.error(e));
+        }).catch((error) => console.error(error));
     });
 
     return (

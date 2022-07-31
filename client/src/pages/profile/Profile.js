@@ -114,7 +114,7 @@ function Profile() {
                             (
                             
                             <Formik
-                                initialValues={{ name: "" }}
+                                initialValues={{ name: authState.name }}
                                 onSubmit={handleOnSubmit}
                                 validationSchema={formProfileSchema}
                                 
@@ -138,7 +138,7 @@ function Profile() {
 
                                     {serverState && (
                                     <div className={!serverState.ok ? "errorMsg" : ""}>
-                                        <Alert key="danger" variant="danger" >
+                                        <Alert key={!serverState.ok ? "danger" : "success"} variant={!serverState.ok ? "danger" : "success"} >
                                             {serverState.msg}
                                         </Alert>
                                         

@@ -35,8 +35,8 @@ function Register() {
                 actions.setSubmitting(false);
                 handleServerResponse(false, response.data.error);
                 return;
-            } 
-            
+            }
+
             actions.setSubmitting(false);
             actions.resetForm();
 
@@ -97,7 +97,7 @@ function Register() {
 
                                 {serverState && (
                                 <div className={!serverState.ok ? "errorMsg" : ""}>
-                                    <Alert key="danger" variant="danger" >
+                                    <Alert key={!serverState.ok ? "danger" : "success"} variant={!serverState.ok ? "danger" : "success"} >
                                         {serverState.msg}
                                     </Alert>
                                     
