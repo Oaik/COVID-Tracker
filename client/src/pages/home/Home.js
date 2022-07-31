@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 import { Container, Row, Col, Button } from "react-bootstrap";
 
-import "bootstrap-icons/font/bootstrap-icons.css"
 import "./home.css"
 
 function Login() {
@@ -88,7 +87,7 @@ function Login() {
                     <Row className="py-5">
                         <Col sm={3} xs={6}>
                             <div className="feature-card py-5">
-                                <i className="bi bi-chevron-double-down fs-1"></i>
+                                <i className="bi bi-journal fs-1"></i>
                                 <h4>
                                     Logs
                                 </h4>
@@ -101,7 +100,7 @@ function Login() {
 
                         <Col sm={3} xs={6}>
                             <div className="feature-card py-5">
-                                <i className="bi bi-chevron-double-down fs-1"></i>
+                                <i className="bi bi-map fs-1"></i>
                                 <h4>
                                     Live Dashboard
                                 </h4>
@@ -114,7 +113,7 @@ function Login() {
 
                         <Col sm={3} xs={6}>
                             <div className="feature-card py-5">
-                                <i className="bi bi-chevron-double-down fs-1"></i>
+                                <i className="bi bi-cash-coin fs-1"></i>
                                 <h4>
                                 Fees
                                 </h4>
@@ -126,7 +125,7 @@ function Login() {
 
                         <Col sm={3} xs={6}>
                             <div className="feature-card bg-gray py-5">
-                                <i className="bi bi-chevron-double-down fs-1"></i>
+                                <i className="bi bi-shield fs-1"></i>
                                 <h4>
                                     Security
                                 </h4>

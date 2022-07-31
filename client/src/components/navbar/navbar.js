@@ -19,24 +19,45 @@ const Navbar = () => {
 
             <NavbarBootstrap.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-                    <Link to="/dashboard" className="nav-link"> Dashboard</Link>
+                    <Link to="/dashboard" className="nav-link"> 
+                        Dashboard
+                        <i className="bi bi-window ps-1 mx-1 fs-5"></i>
+                    </Link>
                     
                     {authState.status && 
                         <>
-                            <Link to="/profile" className="nav-link">Profile</Link>
-                            <Link to="/log" className="nav-link">Log</Link>
+                        
+                            <Link to="/profile" className="nav-link">
+                                Profile
+                                <i className="bi bi-person-lines-fill ps-1 mx-1 fs-5"></i>
+                            </Link>
+
+                            <Link to="/log" className="nav-link">
+                                New Log
+                                <i className="bi bi-plus-square ps-1 mx-1 fs-5"></i>
+                            </Link>
                         </>
                     }
                 </Nav>
                 <Nav>
                     {authState.status ?
                         <>
-                            <Link to="/logout" className="nav-link">Logout</Link>
+                            <Link to="/logout" className="nav-link">
+                                Logout
+                                <i className="bi bi-box-arrow-in-left ps-1 mx-1 fs-5"></i>
+                            </Link>
                         </>
                         :
                         <>
-                            <Link to="/login" className="nav-link">Login</Link>
-                            <Link to="/register" className="nav-link">Register</Link>
+                            <Link to="/login" className="nav-link">
+                                Login
+                                <i className="bi bi-box-arrow-in-right ps-1 mx-1 fs-5"></i>
+                            </Link>
+
+                            <Link to="/register" className="nav-link">
+                                Register
+                                <i className="bi bi-person-plus ps-1 mx-1 fs-5"></i>
+                            </Link>
                         </>
                     }
                 </Nav>

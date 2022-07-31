@@ -5,8 +5,6 @@ import {
 } from "react-router-dom";
 
 // components
-import {Container} from 'react-bootstrap';
-
 import Navbar from "./components/navbar/navbar";
 import Logout from "./components/logout/Logout";
 import Footer from "./components/footer/footer";
@@ -22,7 +20,9 @@ import Register from "./pages/register/Register";
 // contexts
 import { AuthProvider } from "./contexts/authContext";
 
+// style
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap-icons/font/bootstrap-icons.css"
 
 import './App.css';
 
