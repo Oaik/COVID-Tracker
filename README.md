@@ -55,6 +55,8 @@ you can see the schema <a href="https://dbdiagram.io/d/62e03cde0d66c746555703fc"
 
 <img src="/screenshots/COVID-Tracker.png" />
 
+
+#### Non clustered Index
 our website focus on getting information on each country so we can add an index on country column so we can fetch queries for <b>single country</b> faster
 
 ## Design of API
